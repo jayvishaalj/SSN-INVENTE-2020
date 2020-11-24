@@ -21,6 +21,33 @@ router.get("/login", function (req, res, next) {
   }
 });
 
+router.get("/logout", function (req, res, next) {
+  if (req.session.data) {
+    console.log("LOGIN SESSION PRESENT");
+    if (req.session.isLogged) {
+      logger.log(
+        "info",
+        `User Logging Out ${JSON.stringify(req.session.data)}`
+      );
+      req.session.isLogged = false;
+      req.session.destroy(function (err) {
+        if (err) {
+          logger.log("error", `User Logout Error ${JSON.stringify(err)}`);
+          req.flash("error", "Oops! Something Happened! Unable to Logout!");
+          return res.redirect("/user/home");
+        } else {
+          logger.log("info", `User Logged Out Successfully`);
+          return res.redirect("login");
+        }
+      });
+    } else {
+      return res.redirect("login");
+    }
+  } else {
+    return res.redirect("login");
+  }
+});
+
 router.post("/login", (req, res) => {
   try {
     const { error } = userLoginSchema.validate(req.body);

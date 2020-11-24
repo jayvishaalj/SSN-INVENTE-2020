@@ -22,3 +22,27 @@
 11/24/2020, 5:30:42 PM info [app/app.js]: Redis Connected Successfully
 11/24/2020, 5:30:46 PM info [Auth/auth.js]: User Already Logged In {"id":1,"name":"Jay Vishaal J","password":"$2a$10$/QjA2iUFX1DoFGIuu0KJdO.O.hssm3OK8OFKcnSD5MKqOvmaYDMe.","phone":7358125151,"college":"SSN College Of Engineering","email":"jayvishaal@gmail.com"}
 11/24/2020, 5:30:46 PM info [Users/home.js]: User Entered Home Page Jay Vishaal J
+11/24/2020, 5:36:39 PM info [Users/home.js]: User Entered Home Page Jay Vishaal J
+11/24/2020, 5:37:31 PM info [bin/www]: Server is Up and running on Port 3000, port 3000
+11/24/2020, 5:37:31 PM info [app/app.js]: Redis Connected Successfully
+11/24/2020, 5:43:02 PM info [bin/www]: Server is Up and running on Port 3000, port 3000
+11/24/2020, 5:43:02 PM info [app/app.js]: Redis Connected Successfully
+11/24/2020, 5:43:52 PM info [bin/www]: Server is Up and running on Port 3000, port 3000
+11/24/2020, 5:43:52 PM info [app/app.js]: Redis Connected Successfully
+11/24/2020, 5:44:08 PM info [Auth/auth.js]: User Already Logged In {"id":1,"name":"Jay Vishaal J","password":"$2a$10$/QjA2iUFX1DoFGIuu0KJdO.O.hssm3OK8OFKcnSD5MKqOvmaYDMe.","phone":7358125151,"college":"SSN College Of Engineering","email":"jayvishaal@gmail.com"}
+11/24/2020, 5:44:08 PM info [Users/home.js]: User Entered Home Page Jay Vishaal J
+11/24/2020, 5:44:12 PM info [Auth/auth.js]: User Logging Out {"id":1,"name":"Jay Vishaal J","password":"$2a$10$/QjA2iUFX1DoFGIuu0KJdO.O.hssm3OK8OFKcnSD5MKqOvmaYDMe.","phone":7358125151,"college":"SSN College Of Engineering","email":"jayvishaal@gmail.com"}
+11/24/2020, 5:53:30 PM info [bin/www]: Server is Up and running on Port 3000, port 3000
+11/24/2020, 5:53:30 PM info [app/app.js]: Redis Connected Successfully
+11/24/2020, 5:53:37 PM info [Auth/auth.js]: jayvishaal@gmail.com  User Logged IN
+11/24/2020, 5:53:37 PM info [Users/home.js]: User Entered Home Page Jay Vishaal J
+11/24/2020, 5:53:42 PM info [Auth/auth.js]: User Already Logged In {"id":1,"name":"Jay Vishaal J","password":"$2a$10$/QjA2iUFX1DoFGIuu0KJdO.O.hssm3OK8OFKcnSD5MKqOvmaYDMe.","phone":7358125151,"college":"SSN College Of Engineering","email":"jayvishaal@gmail.com"}
+11/24/2020, 5:53:42 PM info [Users/home.js]: User Entered Home Page Jay Vishaal J
+11/24/2020, 5:53:45 PM info [Auth/auth.js]: User Logging Out {"id":1,"name":"Jay Vishaal J","password":"$2a$10$/QjA2iUFX1DoFGIuu0KJdO.O.hssm3OK8OFKcnSD5MKqOvmaYDMe.","phone":7358125151,"college":"SSN College Of Engineering","email":"jayvishaal@gmail.com"}
+11/24/2020, 5:53:45 PM info [Auth/auth.js]: User Logged Out Successfully
+11/24/2020, 5:53:55 PM info [Auth/auth.js]: jayvishaal@gmail.com  User Logged IN
+11/24/2020, 5:53:55 PM info [Users/home.js]: User Entered Home Page Jay Vishaal J
+11/24/2020, 5:54:00 PM info [Auth/auth.js]: User Already Logged In {"id":1,"name":"Jay Vishaal J","password":"$2a$10$/QjA2iUFX1DoFGIuu0KJdO.O.hssm3OK8OFKcnSD5MKqOvmaYDMe.","phone":7358125151,"college":"SSN College Of Engineering","email":"jayvishaal@gmail.com"}
+11/24/2020, 5:54:00 PM info [Users/home.js]: User Entered Home Page Jay Vishaal J
+11/24/2020, 5:54:04 PM info [Auth/auth.js]: User Logging Out {"id":1,"name":"Jay Vishaal J","password":"$2a$10$/QjA2iUFX1DoFGIuu0KJdO.O.hssm3OK8OFKcnSD5MKqOvmaYDMe.","phone":7358125151,"college":"SSN College Of Engineering","email":"jayvishaal@gmail.com"}
+11/24/2020, 5:54:04 PM info [Auth/auth.js]: User Logged Out Successfully
