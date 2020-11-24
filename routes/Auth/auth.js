@@ -3,8 +3,9 @@ const connection = require("../middleware/db");
 var router = express.Router();
 const logger = require("../../config/logger")(module);
 const bcrypt = require("bcryptjs");
-const { userLoginSchema } = require("../Users/schema");
-/* GET home page. */
+const { userLoginSchema, userRegisterSchema } = require("../Users/schema");
+
+/* GET Login page. */
 router.get("/login", function (req, res, next) {
   if (req.session.data) {
     console.log("SESSION PRESENT");
@@ -21,6 +22,7 @@ router.get("/login", function (req, res, next) {
   }
 });
 
+/* Logout Functionality */
 router.get("/logout", function (req, res, next) {
   if (req.session.data) {
     console.log("LOGIN SESSION PRESENT");
@@ -48,6 +50,11 @@ router.get("/logout", function (req, res, next) {
   }
 });
 
+/**
+ * All POST methods for handling the Auth Form Requests
+ */
+
+/* Login API */
 router.post("/login", (req, res) => {
   try {
     const { error } = userLoginSchema.validate(req.body);
@@ -114,6 +121,70 @@ router.post("/login", (req, res) => {
     );
     return res.redirect("login");
   }
+});
+
+/* Register API */
+router.post("/register", async (req, res) => {
+  try {
+    const { error } = userRegisterSchema.validate(req.body);
+    if (error) {
+      req.flash("error", error.details[0].message);
+      logger.log(
+        "error",
+        `User Register Schema Error ${error.details[0].message}`
+      );
+      return res.redirect("login");
+    } else {
+      const password = await bcrypt.hash(req.body.password, 10);
+      logger.log("info", ` User Registering ${JSON.stringify(req.body)}`);
+      let sql = `INSERT INTO users (name, password, email, phone, college, regno) VALUES (?,?,?,?,?,?)`;
+      connection.query(
+        sql,
+        [
+          req.body.name,
+          password,
+          req.body.email,
+          req.body.phno,
+          req.body.college,
+          req.body.regno,
+        ],
+        (err, data) => {
+          if (err) {
+            if (err.code === "ER_DUP_ENTRY") {
+              req.flash("error", "User Already Exists! Please try to Login!");
+              logger.log("error", `User Register Already Exists Error ${err}`);
+              return res.redirect("login");
+            } else {
+              req.flash(
+                "error",
+                "Something Happened Please Try Again after sometime!"
+              );
+              logger.log("error", `User Login  Error ${err}`);
+              return res.redirect("login");
+            }
+          } else {
+            const data = [
+              {
+                name: req.body.name,
+                email: req.body.email,
+                phno: req.body.phno,
+                college: req.body.college,
+                regno: req.body.regno,
+              },
+            ];
+            req.session.data = data[0];
+            req.session.isLogged = true;
+            logger.log(
+              "info",
+              `${req.body.email}  User Registered and Logged IN`
+            );
+            req.flash("success", "Successfully Logged In!");
+            return res.redirect("/user/home");
+          }
+        }
+      );
+    }
+  } catch (error) {}
 });
 
 module.exports = router;
