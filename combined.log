@@ -1,0 +1,24 @@
+11/24/2020, 4:52:41 PM error [Auth/auth.js]: User Login Catch Block Error {"email":"jayvishaal@gmail.com","password":"JayvishaalJ144"}, Error : ReferenceError: userLoginSchema is not defined
+11/24/2020, 4:54:06 PM error [Auth/auth.js]: User Login Catch Block Error {"email":"jayvishaal@gmail.com","password":"JayvishaalJ144"}, Error : TypeError: userLoginSchema.validate is not a function
+11/24/2020, 4:55:44 PM error [Auth/auth.js]: User Login  Error Error: ER_NO_SUCH_TABLE: Table 'invente.users' doesn't exist
+11/24/2020, 4:56:47 PM error [Auth/auth.js]: User Login  Error Error: ER_NO_SUCH_TABLE: Table 'invente.users' doesn't exist
+11/24/2020, 4:58:15 PM error [Auth/auth.js]: User Login  Error Error: ER_NO_SUCH_TABLE: Table 'invente.users' doesn't exist
+11/24/2020, 5:13:12 PM info [Auth/auth.js]: jayvishaal@gmail.com  User Logged IN
+11/24/2020, 5:16:12 PM info [Auth/auth.js]: jayvishaal@gmail.com  User Logged IN
+11/24/2020, 5:19:14 PM info [Auth/auth.js]: jayvishaal@gmail.com  User Logged IN
+11/24/2020, 5:22:12 PM info [Auth/auth.js]: jayvishaal@gmail.com  User Logged IN
+11/24/2020, 5:22:12 PM info [Users/home.js]: User Entered Home Page Jay Vishaal J
+11/24/2020, 5:23:02 PM info [Auth/auth.js]: User Already Logged In {"id":1,"name":"Jay Vishaal J","password":"$2a$10$/QjA2iUFX1DoFGIuu0KJdO.O.hssm3OK8OFKcnSD5MKqOvmaYDMe.","phone":7358125151,"college":"SSN College Of Engineering","email":"jayvishaal@gmail.com"}
+11/24/2020, 5:24:59 PM info [app/app.js]: Redis Connected Successfully
+11/24/2020, 5:29:17 PM info [Auth/auth.js]: User Already Logged In {"id":1,"name":"Jay Vishaal J","password":"$2a$10$/QjA2iUFX1DoFGIuu0KJdO.O.hssm3OK8OFKcnSD5MKqOvmaYDMe.","phone":7358125151,"college":"SSN College Of Engineering","email":"jayvishaal@gmail.com"}
+11/24/2020, 5:29:17 PM info [Users/home.js]: User Entered Home Page Jay Vishaal J
+11/24/2020, 5:29:59 PM info [Auth/auth.js]: jayvishaal@gmail.com  User Logged IN
+11/24/2020, 5:29:59 PM info [Users/home.js]: User Entered Home Page Jay Vishaal J
+11/24/2020, 5:30:15 PM error [Auth/auth.js]: User Login Password MissMatch Error {"email":"jayvishaal@gmail.com","password":"JayvishaalJ14"}
+11/24/2020, 5:30:21 PM error [Auth/auth.js]: User Login Password MissMatch Error {"email":"jayvishaal@gmail.com","password":"g"}
+11/24/2020, 5:30:24 PM info [Auth/auth.js]: jayvishaal@gmail.com  User Logged IN
+11/24/2020, 5:30:24 PM info [Users/home.js]: User Entered Home Page Jay Vishaal J
+11/24/2020, 5:30:42 PM info [bin/www]: Server is Up and running on Port 3000, port 3000
+11/24/2020, 5:30:42 PM info [app/app.js]: Redis Connected Successfully
+11/24/2020, 5:30:46 PM info [Auth/auth.js]: User Already Logged In {"id":1,"name":"Jay Vishaal J","password":"$2a$10$/QjA2iUFX1DoFGIuu0KJdO.O.hssm3OK8OFKcnSD5MKqOvmaYDMe.","phone":7358125151,"college":"SSN College Of Engineering","email":"jayvishaal@gmail.com"}
+11/24/2020, 5:30:46 PM info [Users/home.js]: User Entered Home Page Jay Vishaal J

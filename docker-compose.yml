@@ -1,0 +1,64 @@
+version: "3"
+services:
+  mysql:
+    image: mysql:8.0.2
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: nodeserver
+      MYSQL_PASSWORD: jayvishaal
+      MYSQL_DATABASE: invente
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysqlstore:/data/lib
+  redis:
+    image: "redis:alpine"
+    command: redis-server --requirepass jay_vishaal_j_144
+    ports:
+      - "6379:6379"
+    volumes:
+      - $PWD/redis-data:/var/lib/redis
+      - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+      - REDIS_REPLICATION_MODE=master
+  phpmyadmin:
+    image: "phpmyadmin:apache"
+    restart: always
+    depends_on:
+      - mysql
+    ports:
+      - "30002:80"
+    environment:
+      - PMA_HOST=mysql
+      - PMA_PORT= 3306
+    volumes:
+      - /sessions
+  nodejs:
+    build: .
+    restart: always
+    ports:
+      - "3000:3000"
+    links:
+      - mysql
+    volumes:
+      - ./:/usr/src/app
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: nodeserver
+      MYSQL_PASS: jayvishaal
+      MYSQL_DB: invente
+    depends_on:
+      - mysql
+      - redis
+  # nginx:
+  #   image: nginx:latest
+  #   volumes:
+  #     - ./nginx-conf/nginx.conf:/etc/nginx/conf.d/default.conf
+  #   ports:
+  #     - "80:80"
+  #   links:
+  #     - nodejs
+  #     - phpmyadmin
+
+volumes:
+  mysqlstore:
