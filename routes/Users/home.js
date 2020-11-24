@@ -12,7 +12,11 @@ router.get("/", function (req, res, next) {
         username: req.session.data.name,
         isLogged: req.session.isLogged,
       });
+    } else {
+      return res.redirect("/auth/login");
     }
+  } else {
+    return res.redirect("/auth/login");
   }
 });
 

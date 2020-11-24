@@ -1,0 +1,36 @@
+<h1>Welcome {{username}}</h1>
+<p>Reg Phone : {{phone}}</p>
+<br />
+<br />
+<h4>User Profile</h4>
+<br />
+<h6>Amount Paid for Day 1 : {{day1}} </h6>
+<h6>Amount Paid for Day 2 : {{day2}} </h6>
+<br />
+<br />
+<h4>Events Registered by you </h4>
+<br />
+{{#if events}}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Event ID</th>
+            <th>Event Name</th>
+            <th>Conducting DEPT</th>
+            <th>Event Day</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each events}}
+        <tr>
+            <td>{{this.eventId}}</td>
+            <td>{{this.event}}</td>
+            <td>{{this.conductingDept}}</td>
+            <td>{{this.eventDay}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+{{^}}
+<p> Haven't Registered For Any Events Yet !</p>
+{{/if}}
