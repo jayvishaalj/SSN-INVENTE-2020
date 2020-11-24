@@ -1,12 +1,11 @@
 var express = require("express");
 var router = express.Router();
+const logger = require("../../config/logger")(module);
 
-/* GET home page. */
+/* GET ECE Dept Page */
 router.get("/", function (req, res, next) {
   const messages = req.flash();
-  res.render("index", {
-    messages,
-  });
+  return res.render("ece", { messages, isLogged: req.session.isLogged });
 });
 
 module.exports = router;

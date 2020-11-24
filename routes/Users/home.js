@@ -7,7 +7,11 @@ router.get("/", function (req, res, next) {
   if (req.session.isLogged) {
     if (req.session.data) {
       logger.log("info", `User Entered Home Page ${req.session.data.name}`);
-      return res.render("home", { messages, username: req.session.data.name });
+      return res.render("home", {
+        messages,
+        username: req.session.data.name,
+        isLogged: req.session.isLogged,
+      });
     }
   }
 });
