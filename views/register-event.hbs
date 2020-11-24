@@ -1,0 +1,33 @@
+{{> messages}}
+
+<h1>Register For Events</h1>
+<br />
+{{#if events}}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Event Name</th>
+            <th>Conducting DEPT</th>
+            <th>Event Day</th>
+            <th>Register</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each events}}
+        <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.dept}}</td>
+            <td>{{this.day}}</td>
+            <td>
+                <form id="EventForm" action="/event/register" method="POST">
+                    <input type="hidden" name="eventId" value={{this.id}} hidden>
+                    <input type="submit" value="Register">
+                </form>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+{{^}}
+<p>No Events Loaded Pls Reload Again !</p>
+{{/if}}
