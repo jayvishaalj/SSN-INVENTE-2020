@@ -1,6 +1,6 @@
 const winston = require("winston");
 const { format } = winston;
-// const SlackHook = require("winston-slack-webhook-transport");
+var WinstonGraylog2 = require("winston-graylog2");
 const path = require("path");
 
 const logFormat = format.printf(
@@ -33,10 +33,22 @@ module.exports = (callingModule) => {
     defaultMeta: { service: "user-service" },
     transports: [
       new winston.transports.File({ filename: "combined.log" }),
-      //   new SlackHook({
-      //     webhookUrl:
-      //       "",
-      //   }),
+      new WinstonGraylog2({
+        name: "Graylog",
+        level: "info",
+        // silent: false,
+        // handleExceptions: false,
+        prelog: function (msg) {
+          return msg.trim();
+        },
+        graylog: {
+          servers: [{ host: "graylog", port: 12201 }],
+          // hostname: "graylog",
+          facility: "INVENTE",
+          // bufferSize: 1400,
+        },
+        staticMeta: { env: "development" },
+      }),
     ],
   });
   return logger;

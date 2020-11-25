@@ -1,8 +1,11 @@
 <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" data-aos="fade-down"
     data-aos-duration="1000" data-aos-once="true" style="background-color:  rgba(0,0,0,0.92);margin-top: 0px;">
-    <div class="container-fluid"><a
-            class="navbar-brand d-flex float-left justify-content-start align-items-start align-content-start justify-content-xl-start"
-            href="/" style="color: #f07200;">Invente 2020</a><button data-toggle="collapse"
+    <div class="container-fluid">{{#if isLogged}}
+        <a class="navbar-brand d-flex float-left justify-content-start align-items-start align-content-start justify-content-xl-start"
+            href="/user/home" style="color: #f07200;">Invente 2020</a>
+        {{^}}
+        <a class="navbar-brand d-flex float-left justify-content-start align-items-start align-content-start justify-content-xl-start"
+            href="/" style="color: #f07200;">Invente 2020</a>{{/if}}<button data-toggle="collapse"
             class="navbar-toggler float-right" data-target="#navcol-1" style="background-color: rgb(240,112,0);"><span
                 class="sr-only">Toggle
                 navigation</span><span class="navbar-toggler-icon"></span></button>

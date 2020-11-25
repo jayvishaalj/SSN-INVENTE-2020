@@ -7,6 +7,11 @@ const { userLoginSchema, userRegisterSchema } = require("../Users/schema");
 
 /* GET Login page. */
 router.get("/login", function (req, res, next) {
+  logger.info("This is a debug log.", {
+    key1: "value1",
+    key2: "value2",
+    key3: "value3",
+  });
   if (req.session.data) {
     console.log("SESSION PRESENT");
     if (req.session.isLogged) {
