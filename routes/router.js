@@ -3,7 +3,7 @@ var router = express.Router();
 var indexRouter = require("./index");
 var usersRouter = require("./Users/router");
 var authRouter = require("./Auth/auth");
-var deptRouter = require("./Depts/router");
+var deptRouter = require("./depts/router");
 var eventRouter = require("./Events/router");
 var paymentRouter = require("./Pay/router");
 
