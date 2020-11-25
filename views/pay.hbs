@@ -1,2 +1,25 @@
 {{> messages}}
 <h1>PAYMENT PAGE</h1>
+{{#if paid200}}
+{{!-- Already Paid 200 and no more payment option available --}}
+<p> Sorry You have Already Paid 200 so there are no more options left for you!</p>
+{{^}}
+{{#if paid100}}
+{{!-- Already Paid 100 and can pay 100 more to get 4 more events --}}
+<p> You Have Already Paid 100, So now you can pay 100 More to release to apply for 4 more events!</p>
+<form id="PayForm" action="/pay" method="POST">
+    <input type="hidden" name="eventId" value="100" hidden>
+    <input type="submit" value="PAY">
+</form>
+{{^}}
+{{!-- Not Paid anything and can pay 100 or 200 depending on their choice --}}
+<p> You Have Two Options to Pay 100 or 200 => </p>
+<form id="PayForm" action="/pay" method="POST">
+    <input type="radio" id="pay100" name="amount" value="100" required>
+    <label for="pay100">₹100</label><br>
+    <input type="radio" id="pay200" name="amount" value="200">
+    <label for="pay200">₹200</label><br>
+    <input type="submit" value="PAY">
+</form>
+{{/if}}
+{{/if}}

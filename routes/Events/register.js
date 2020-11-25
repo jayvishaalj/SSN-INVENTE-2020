@@ -38,7 +38,7 @@ router.get("/", function (req, res, next) {
 
 /* Register for Events POST API */
 router.post("/", (req, res) => {
-  console.log("Register EVENT body : ", req.body);
+  console.log("Register EVENT body : ", req.body, req.session.data);
   let sql =
     "SELECT COUNT(attendees.eventid) as registeredEventCount, users.id as userId, users.paid as paid FROM attendees JOIN users ON users.id = attendees.userid WHERE users.email = ? ";
   connection.query(sql, [req.session.data.email], (err, data) => {
@@ -47,84 +47,198 @@ router.post("/", (req, res) => {
       logger.log("error", `Register Event POST Error ${err}`);
       return res.redirect("register");
     } else {
-      console.log("COUNT DATA ", data[0].registeredEventCount);
-      if (data[0].paid == 100) {
-        if (data[0].registeredEventCount < 3) {
-          sql = `INSERT INTO attendees (eventid, userid) VALUES (? ,?)`;
-          connection.query(
-            sql,
-            [req.body.eventId, data[0].userId],
-            (errSub, dataSub) => {
-              if (errSub) {
-                if (errSub.code === "ER_DUP_ENTRY") {
-                  req.flash("error", "Already Registered For this Event");
-                  return res.redirect("register");
-                } else if (errSub.code === "ER_NO_REFERENCED_ROW_2") {
-                  req.flash("error", "Event or User Not found!");
-                  logger.log("error", `Register Event POST Error ${errSub}`);
-                  return res.redirect("register");
-                } else {
-                  req.flash("error", "Oops something went wrong !");
-                  logger.log("error", `Register Event POST Error ${errSub}`);
-                  return res.redirect("register");
-                }
+      console.log("COUNT DATA ", data[0]);
+      if (data[0].registeredEventCount === 0) {
+        sql = "SELECT paid, id as userId from users where email = ?";
+        connection.query(sql, [req.session.data.email], (errSub1, dataSub) => {
+          if (errSub1) {
+            req.flash(
+              "error",
+              "Oops something went wrong ! Refresh and try Again!"
+            );
+            logger.log("error", `Register Event POST errSub1 Error ${errSub1}`);
+            return res.redirect("register");
+          } else {
+            if (dataSub[0].paid == 100) {
+              if (data[0].registeredEventCount < 3) {
+                sql = `INSERT INTO attendees (eventid, userid) VALUES (? ,?)`;
+                connection.query(
+                  sql,
+                  [req.body.eventId, dataSub[0].userId],
+                  (errSub, dataSub2) => {
+                    if (errSub) {
+                      if (errSub.code === "ER_DUP_ENTRY") {
+                        req.flash("error", "Already Registered For this Event");
+                        return res.redirect("register");
+                      } else if (errSub.code === "ER_NO_REFERENCED_ROW_2") {
+                        req.flash("error", "Event or User Not found!");
+                        logger.log(
+                          "error",
+                          `Register Event POST errSub Error ${errSub}`
+                        );
+                        return res.redirect("register");
+                      } else {
+                        req.flash("error", "Oops something went wrong !");
+                        logger.log(
+                          "error",
+                          `Register Event POST Error ${errSub}`
+                        );
+                        return res.redirect("register");
+                      }
+                    } else {
+                      req.flash(
+                        "success",
+                        `register for the Event ${req.body.eventId}`
+                      );
+                      logger.log(
+                        "success",
+                        `User Registed For a new Event ${req.body.eventId} by user ${dataSub[0].userId}`
+                      );
+                      return res.redirect("register");
+                    }
+                  }
+                );
               } else {
                 req.flash(
-                  "success",
-                  `register for the Event ${req.body.eventId}`
-                );
-                logger.log(
-                  "success",
-                  `User Registed For a new Event ${req.body.eventId} by user ${data[0].userId}`
+                  "error",
+                  `Oops!, Already Registered For Limited Events! Pay ₹100 more to release 4 more events!`
                 );
                 return res.redirect("register");
               }
-            }
-          );
-        } else {
-          req.flash("error", `Oops!, Already Registered For Limited Events!`);
-          return res.redirect("register");
-        }
-      } else if (data[0].paid == 200) {
-        if (data[0].registeredEventCount < 6) {
-          sql = `INSERT INTO attendees (eventid, userid) VALUES (? ,?)`;
-          connection.query(
-            sql,
-            [req.body.eventId, data[0].userId],
-            (errSub, dataSub) => {
-              if (errSub) {
-                if (errSub.code === "ER_DUP_ENTRY") {
-                  req.flash("error", "Already Registered For this Event");
-                  return res.redirect("register");
-                } else if (errSub.code === "ER_NO_REFERENCED_ROW_2") {
-                  req.flash("error", "Event or User Not found!");
-                  logger.log("error", `Register Event POST Error ${errSub}`);
-                  return res.redirect("register");
-                } else {
-                  req.flash("error", "Oops something went wrong !");
-                  logger.log("error", `Register Event POST Error ${errSub}`);
-                  return res.redirect("register");
-                }
+            } else if (dataSub[0].paid == 200) {
+              if (data[0].registeredEventCount < 6) {
+                sql = `INSERT INTO attendees (eventid, userid) VALUES (? ,?)`;
+                connection.query(
+                  sql,
+                  [req.body.eventId, dataSub[0].userId],
+                  (errSub, dataSub2) => {
+                    if (errSub) {
+                      if (errSub.code === "ER_DUP_ENTRY") {
+                        req.flash("error", "Already Registered For this Event");
+                        return res.redirect("register");
+                      } else if (errSub.code === "ER_NO_REFERENCED_ROW_2") {
+                        req.flash("error", "Event or User Not found!");
+                        logger.log(
+                          "error",
+                          `Register Event POST Error ${errSub}`
+                        );
+                        return res.redirect("register");
+                      } else {
+                        req.flash("error", "Oops something went wrong !");
+                        logger.log(
+                          "error",
+                          `Register Event POST Error ${errSub}`
+                        );
+                        return res.redirect("register");
+                      }
+                    } else {
+                      req.flash(
+                        "success",
+                        `register for the Event ${req.body.eventId}`
+                      );
+                      logger.log(
+                        "success",
+                        `User Registed For a new Event ${req.body.eventId} by user ${dataSub[0].userId}`
+                      );
+                      return res.redirect("register");
+                    }
+                  }
+                );
               } else {
                 req.flash(
-                  "success",
-                  `register for the Event ${req.body.eventId}`
-                );
-                logger.log(
-                  "success",
-                  `User Registed For a new Event ${req.body.eventId} by user ${data[0].userId}`
+                  "error",
+                  `Oops!, Already Registered For Limited Events!`
                 );
                 return res.redirect("register");
               }
+            } else {
+              req.flash("error", "Please Pay to Register for the events !");
+              return res.redirect("/pay");
             }
-          );
-        } else {
-          req.flash("error", `Oops!, Already Registered For Limited Events!`);
-          return res.redirect("register");
-        }
+          }
+        });
       } else {
-        req.flash("error", "Please Pay to Register for the events !");
-        return res.redirect("/pay");
+        if (data[0].paid == 100) {
+          if (data[0].registeredEventCount < 3) {
+            sql = `INSERT INTO attendees (eventid, userid) VALUES (? ,?)`;
+            connection.query(
+              sql,
+              [req.body.eventId, data[0].userId],
+              (errSub, dataSub) => {
+                if (errSub) {
+                  if (errSub.code === "ER_DUP_ENTRY") {
+                    req.flash("error", "Already Registered For this Event");
+                    return res.redirect("register");
+                  } else if (errSub.code === "ER_NO_REFERENCED_ROW_2") {
+                    req.flash("error", "Event or User Not found!");
+                    logger.log("error", `Register Event POST Error ${errSub}`);
+                    return res.redirect("register");
+                  } else {
+                    req.flash("error", "Oops something went wrong !");
+                    logger.log("error", `Register Event POST Error ${errSub}`);
+                    return res.redirect("register");
+                  }
+                } else {
+                  req.flash(
+                    "success",
+                    `register for the Event ${req.body.eventId}`
+                  );
+                  logger.log(
+                    "success",
+                    `User Registed For a new Event ${req.body.eventId} by user ${data[0].userId}`
+                  );
+                  return res.redirect("register");
+                }
+              }
+            );
+          } else {
+            req.flash(
+              "error",
+              `Oops!, Already Registered For Limited Events! Pay ₹100 more to release 4 more events!`
+            );
+            return res.redirect("register");
+          }
+        } else if (data[0].paid == 200) {
+          if (data[0].registeredEventCount < 6) {
+            sql = `INSERT INTO attendees (eventid, userid) VALUES (? ,?)`;
+            connection.query(
+              sql,
+              [req.body.eventId, data[0].userId],
+              (errSub, dataSub) => {
+                if (errSub) {
+                  if (errSub.code === "ER_DUP_ENTRY") {
+                    req.flash("error", "Already Registered For this Event");
+                    return res.redirect("register");
+                  } else if (errSub.code === "ER_NO_REFERENCED_ROW_2") {
+                    req.flash("error", "Event or User Not found!");
+                    logger.log("error", `Register Event POST Error ${errSub}`);
+                    return res.redirect("register");
+                  } else {
+                    req.flash("error", "Oops something went wrong !");
+                    logger.log("error", `Register Event POST Error ${errSub}`);
+                    return res.redirect("register");
+                  }
+                } else {
+                  req.flash(
+                    "success",
+                    `register for the Event ${req.body.eventId}`
+                  );
+                  logger.log(
+                    "success",
+                    `User Registed For a new Event ${req.body.eventId} by user ${data[0].userId}`
+                  );
+                  return res.redirect("register");
+                }
+              }
+            );
+          } else {
+            req.flash("error", `Oops!, Already Registered For Limited Events!`);
+            return res.redirect("register");
+          }
+        } else {
+          req.flash("error", "Please Pay to Register for the events !");
+          return res.redirect("/pay");
+        }
       }
     }
   });
