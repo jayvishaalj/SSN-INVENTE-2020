@@ -1,3 +1,26 @@
+<nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" data-aos="fade-down"
+    data-aos-duration="1000" data-aos-once="true" style="background-color:  rgba(0,0,0,0.92);margin-top: 0px;">
+    <div class="container-fluid"><a
+            class="navbar-brand d-flex float-left justify-content-start align-items-start align-content-start justify-content-xl-start"
+            href="/user/home" style="color: #f07200;">Invente 2020</a><button data-toggle="collapse"
+            class="navbar-toggler float-right" data-target="#navcol-1" style="background-color: rgb(240,112,0);"><span
+                class="sr-only">Toggle
+                navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse text-right float-right d-xl-flex justify-content-xl-end" id="navcol-1">
+            <span class="ml-auto navbar-text actions">
+                <a class="login" style="color: #f07200;">Welcome
+                    {{ username }}</a>
+                <a class="login" href="/event/register" style="color: #f07200;">Register For Events</a>
+                <a class="login" href="/pay" style="color: #f07200;">Pay</a>
+                <a class="btn btn-light action-button" role="button" href="/user/profile"
+                    style="background-color: #f07200;">View Profile</a>
+                <a class="btn btn-light action-button" role="button" href="/auth/logout"
+                    style="background-color: #f07200;">Log Out</a>
+            </span>
+
+        </div>
+    </div>
+</nav>
 <h1>Welcome {{username}}</h1>
 <p>Reg Phone : {{phone}}</p>
 <br />

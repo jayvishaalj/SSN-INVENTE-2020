@@ -148,9 +148,9 @@ router.post("/register", async (req, res) => {
       req.flash("error", error.details[0].message);
       logger.log(
         "error",
-        `User Register Schema Error ${error.details[0].message}`
+        `User Register Schema Error ${JSON.stringify(error)}`
       );
-      return res.redirect("login");
+      return res.redirect("signup");
     } else {
       const password = await bcrypt.hash(req.body.password, 10);
       logger.log("info", ` User Registering ${JSON.stringify(req.body)}`);
@@ -179,7 +179,7 @@ router.post("/register", async (req, res) => {
                 "Something Happened Please Try Again after sometime!"
               );
               logger.log("error", `User Login  Error ${err}`);
-              return res.redirect("login");
+              return res.redirect("signup");
             }
           } else {
             const data = [

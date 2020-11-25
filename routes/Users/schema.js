@@ -14,5 +14,7 @@ module.exports.userRegisterSchema = Joi.object({
   regno: Joi.string().required(),
   dept: Joi.string().required(),
   year: Joi.string().required(),
-  passwordRepeat: Joi.string().required().valid(Joi.ref("password")),
+  passwordRepeat: Joi.string().required().valid(Joi.ref("password")).messages({
+    "any.only": "Passwords Doesn't match !",
+  }),
 });
