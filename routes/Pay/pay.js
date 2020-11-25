@@ -33,10 +33,10 @@ router.get("/", function (req, res, next) {
         }
       });
     } else {
-      return res.render("/auth/login", { messages });
+      return res.redirect("/auth/login");
     }
   } else {
-    return res.render("/auth/login", { messages });
+    return res.redirect("/auth/login");
   }
 });
 
