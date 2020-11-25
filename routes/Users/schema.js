@@ -12,4 +12,7 @@ module.exports.userRegisterSchema = Joi.object({
   password: Joi.string().min(8).required(),
   college: Joi.string().required(),
   regno: Joi.string().required(),
+  dept: Joi.string().required(),
+  year: Joi.string().required(),
+  passwordRepeat: Joi.string().required().valid(Joi.ref("password")),
 });

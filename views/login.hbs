@@ -1,12 +1,18 @@
 {{> messages }}
-<div class="login-form">
-    <h1>Login Form</h1>
-    <form id="LoginForm" action="/auth/login" method="POST">
-        <input type="text" name="email" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="submit">
+<div class="login-dark"
+    style="background-image: url(&quot;assets/img/logo.png&quot;);background-size: contain;background-repeat: no-repeat;background-position: center;background-color: #000000;background: background: rgb(240,114,0);">
+    <form method="post" style="background-color: rgba(30,40,51,0.74);font-size: 16px;font-family: Roboto, sans-serif;">
+        <h2 class="sr-only">Login Form</h2>
+        <div class="illustration"><i class="icon ion-ios-locked-outline" style="color: #f07200;"></i></div>
+        <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
+        <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password">
+        </div>
+        <div class="form-group"><button class="btn btn-primary btn-block" type="submit"
+                style="background-color: #f07200;">Log In</button></div><a class="forgot" href="#"
+            style="color: #f07200;">Forgot your email or password?</a>
     </form>
-    <br />
+</div>
+{{!-- <br />
     <br />
     <h1>Register Form</h1>
     <form id="LoginForm" action="/auth/register" method="POST">
@@ -17,5 +23,4 @@
         <input type="text" name="college" placeholder="College Name" required>
         <input type="number" name="regno" placeholder="College Registration Number" required>
         <input type="submit">
-    </form>
-</div>
+    </form> --}}
