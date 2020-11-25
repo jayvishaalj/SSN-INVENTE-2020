@@ -93,7 +93,7 @@ router.post("/", (req, res) => {
               "info",
               `User made a PAYMENT ${req.session.data.email}, ${req.body.amount}`
             );
-            return res.redirect("/user/home");
+            return res.redirect("/event/register");
           }
         }
       );
