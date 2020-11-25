@@ -22,6 +22,23 @@ router.get("/login", function (req, res, next) {
   }
 });
 
+/* GET Signup page. */
+router.get("/signup", function (req, res, next) {
+  if (req.session.data) {
+    console.log("SESSION PRESENT");
+    if (req.session.isLogged) {
+      logger.log(
+        "info",
+        `User Already Logged In ${JSON.stringify(req.session.data)}`
+      );
+      res.redirect("/user/home");
+    }
+  } else {
+    const messages = req.flash();
+    res.render("signup", { messages });
+  }
+});
+
 /* Logout Functionality */
 router.get("/logout", function (req, res, next) {
   if (req.session.data) {
@@ -131,13 +148,13 @@ router.post("/register", async (req, res) => {
       req.flash("error", error.details[0].message);
       logger.log(
         "error",
-        `User Register Schema Error ${error.details[0].message}`
+        `User Register Schema Error ${JSON.stringify(error)}`
       );
-      return res.redirect("login");
+      return res.redirect("signup");
     } else {
       const password = await bcrypt.hash(req.body.password, 10);
       logger.log("info", ` User Registering ${JSON.stringify(req.body)}`);
-      let sql = `INSERT INTO users (name, password, email, phone, college, regno) VALUES (?,?,?,?,?,?)`;
+      let sql = `INSERT INTO users (name, password, email, phone, college, regno, dept, year) VALUES (?,?,?,?,?,?,?,?)`;
       connection.query(
         sql,
         [
@@ -147,6 +164,8 @@ router.post("/register", async (req, res) => {
           req.body.phno,
           req.body.college,
           req.body.regno,
+          req.body.dept,
+          req.body.year,
         ],
         (err, data) => {
           if (err) {
@@ -160,7 +179,7 @@ router.post("/register", async (req, res) => {
                 "Something Happened Please Try Again after sometime!"
               );
               logger.log("error", `User Login  Error ${err}`);
-              return res.redirect("login");
+              return res.redirect("signup");
             }
           } else {
             const data = [

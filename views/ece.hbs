@@ -1,3 +1,33 @@
+<nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" data-aos="fade-down"
+    data-aos-duration="1000" data-aos-once="true" style="background-color:  rgba(0,0,0,0.92);margin-top: 0px;">
+    <div class="container-fluid"><a
+            class="navbar-brand d-flex float-left justify-content-start align-items-start align-content-start justify-content-xl-start"
+            href="/" style="color: #f07200;">Invente 2020</a><button data-toggle="collapse"
+            class="navbar-toggler float-right" data-target="#navcol-1" style="background-color: rgb(240,112,0);"><span
+                class="sr-only">Toggle
+                navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse text-right float-right d-xl-flex justify-content-xl-end" id="navcol-1">
+            {{#if isLogged}}
+            <span class="ml-auto navbar-text actions">
+                <a class="login" style="color: #f07200;">Welcome
+                    {{ username }}</a>
+                <a class="login" href="/event/register" style="color: #f07200;">Register For Events</a>
+                <a class="login" href="/pay" style="color: #f07200;">Pay</a>
+                <a class="btn btn-light action-button" role="button" href="/user/profile"
+                    style="background-color: #f07200;">View Profile</a>
+                <a class="btn btn-light action-button" role="button" href="/auth/logout"
+                    style="background-color: #f07200;">Log Out</a>
+            </span>
+            {{^}}
+            <span class="ml-auto navbar-text actions"> <a class="login" href="/auth/login" style="color: #f07200;">Log
+                    In</a><a class="btn btn-light action-button" role="button" href="/auth/signup"
+                    style="background-color: #f07200;">Sign
+                    Up</a></span>
+            {{/if}}
+
+        </div>
+    </div>
+</nav>
 <section class="text-center d-xl-flex justify-content-center justify-content-xl-center" id="intro_ece-1"
     style="margin-top: 172px;">
     <div class="container" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
@@ -672,7 +702,7 @@
         </div>
     </div>
 </section>
-<section data-aos="fade-up" data-aos-duration="1000" id="ece_event-10" style="margin-top: 150px;">
+<section data-aos="fade-up" data-aos-duration="1000" id="ece_event-10" style="margin-top: 150px;margin-bottom: 100px;">
     <div class="container">
         <h5 class="display-3 text-center" data-aos="fade-up" data-aos-duration="1250" data-aos-once="true"
             style="color: rgb(240,114,0);">PAPER PRESENTATION<br></h5>
