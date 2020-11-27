@@ -41,12 +41,12 @@ module.exports = (callingModule) => {
         prelog: function (msg) {
           return msg.trim();
         },
-        // graylog: {
-        //   servers: [{ host: "graylog", port: 12201 }],
-        //   // hostname: "graylog",
-        //   facility: "INVENTE",
-        //   // bufferSize: 1400,
-        // },
+        graylog: {
+          servers: [{ host: "graylog", port: 12201 }],
+          // hostname: "graylog",
+          facility: "INVENTE",
+          // bufferSize: 1400,
+        },
         staticMeta: { env: "development" },
       }),
     ],
