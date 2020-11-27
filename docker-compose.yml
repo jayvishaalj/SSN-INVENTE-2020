@@ -78,8 +78,8 @@ services:
       # CHANGE ME (must be at least 16 characters)!
       - GRAYLOG_PASSWORD_SECRET=somepasswordpepper
       # Password: admin
-      - GRAYLOG_ROOT_PASSWORD_SHA2=8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
-      - GRAYLOG_HTTP_EXTERNAL_URI=http://127.0.0.1:9000/
+      - GRAYLOG_ROOT_PASSWORD_SHA2=ac7ce0d3c9c4d0efc70ee093c4441bbc19f1165c8c723a28f376266c54267652
+      - GRAYLOG_HTTP_EXTERNAL_URI=https://log.jayvishaalj.cf/
     links:
       - mongodb:mongo
       - elasticsearch

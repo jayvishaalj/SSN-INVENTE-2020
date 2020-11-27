@@ -18,3 +18,10 @@ module.exports.userRegisterSchema = Joi.object({
     "any.only": "Passwords Doesn't match !",
   }),
 });
+
+module.exports.userResetPasswordSchema = Joi.object({
+  password: Joi.string().min(8).required(),
+  passwordRepeat: Joi.string().required().valid(Joi.ref("password")).messages({
+    "any.only": "Passwords Doesn't match !",
+  }),
+});
