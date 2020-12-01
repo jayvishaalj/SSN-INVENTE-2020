@@ -10,7 +10,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - mysqlstore:/data/lib
+      - mysqlstore:/var/lib/mysql
   redis:
     image: "redis:alpine"
     command: redis-server --requirepass jay_vishaal_j_144
