@@ -57,3 +57,34 @@
 {{^}}
 <p>No Events Loaded Pls Reload Again !</p>
 {{/if}}
+
+<br />
+{{#if workshop}}
+<table class="table">
+    <thead>
+        <tr>
+            <th>workshop Name</th>
+            <th>Conducting DEPT</th>
+            <th>workshop Day</th>
+            <th>Register</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each workshop}}
+        <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.dept}}</td>
+            <td>{{this.day}}</td>
+            <td>
+                <form id="workshopForm" action="/event/register/workshop" method="POST">
+                    <input type="hidden" name="workshopId" value={{this.id}} hidden>
+                    <input type="submit" value="Register">
+                </form>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+{{^}}
+<p>No workshop Loaded Pls Reload Again !</p>
+{{/if}}

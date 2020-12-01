@@ -27,7 +27,10 @@
 <br />
 <h4>User Profile</h4>
 <br />
-<h6>Amount Paid : {{paid}} </h6>
+<h6>Amount Paid for Event : {{paid}} </h6>
+{{#if workshopPaid}}
+<h6>You Have Paid ₹250 For the Workshop!</h6>
+{{/if}}
 <br />
 <br />
 <h4>Events Registered by you </h4>
@@ -55,4 +58,13 @@
 </table>
 {{^}}
 <p> Haven't Registered For Any Events Yet !</p>
+{{/if}}
+<br />
+<br />
+<h4>Workshop Registered by you </h4>
+<br />
+{{#if workshop}}
+You Have Registered For {{workshop.name}} conducted by {{workshop.dept}}
+{{^}}
+You Havn't Registered For any Workshop Yet!
 {{/if}}

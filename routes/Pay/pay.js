@@ -101,4 +101,77 @@ router.post("/", (req, res) => {
   }
 });
 
+router.post("/workshop", (req, res) => {
+  try {
+    if (req.session.isLogged && req.session.data && req.session.data.email) {
+      logger.log("info", "User Initiated For Paying Workshop POST API");
+      let sql = "SELECT workshopPaid from users where email = ?";
+      connection.query(sql, [req.session.data.email], (err, data) => {
+        if (err) {
+          req.flash(
+            "error",
+            "Oh Snap! Something Happened Please Try Again after sometime!"
+          );
+          logger.log(
+            "error",
+            `User Pay Workshop DB GET Error ${JSON.stringify(err)}`
+          );
+          return res.redirect("/event/register");
+        } else {
+          if (data[0].workshopPaid === 1) {
+            req.flash("error", "You Have already Paid Once!");
+            logger.log(
+              "error",
+              `User RePay Workshop Error ${JSON.stringify(data[0])}`
+            );
+            return res.redirect("/event/register");
+          } else {
+            sql = `UPDATE users SET workshopPaid = 1 where email = ?`;
+            connection.query(
+              sql,
+              [req.session.data.email],
+              (errSub, dataSub) => {
+                if (errSub) {
+                  req.flash(
+                    "error",
+                    "Oh Snap! Sorry Unable to Put your Payment entry to our DB! Please Contact our Support!"
+                  );
+                  logger.log(
+                    "error",
+                    `User Pay Workshop DB UPDATE Error ${JSON.stringify(
+                      errSub
+                    )}`
+                  );
+                  return res.redirect("/event/register");
+                } else {
+                  req.flash("success", `You Have Sucessfully Paid ₹250`);
+                  logger.log(
+                    "info",
+                    `User made a PAYMENT ${req.session.data.email}, ₹250`
+                  );
+                  return res.redirect("/event/register");
+                }
+              }
+            );
+          }
+        }
+      });
+    } else {
+      return res.redirect("/auth/login");
+    }
+  } catch (error) {
+    req.flash(
+      "error",
+      "Oh Snap! Something Happened Please Try Again after sometime!"
+    );
+    logger.log(
+      "error",
+      `User PAY WORKSHOP Catch Block Error ${JSON.stringify(
+        req.body
+      )}, Error : ${error}`
+    );
+    return res.redirect("/event/register");
+  }
+});
+
 module.exports = router;

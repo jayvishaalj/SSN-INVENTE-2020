@@ -19,16 +19,31 @@ router.get("/", function (req, res, next) {
         } else {
           console.log(data);
           if (data.length > 0) {
-            return res.render("profile", {
-              messages,
-              username: req.session.data.name,
-              isLogged: req.session.isLogged,
-              paid: data[0].paid,
-              phone: data[0].phone,
-              events: data,
-            });
+            sql = `SELECT id, name, dept, day from workshops where id  = (SELECT workshopId from users where email = ?)`;
+            connection.query(
+              sql,
+              [req.session.data.email],
+              (errSub, dataSub) => {
+                if (errSub) {
+                  req.flash("error", "Oops something went wrong !");
+                  logger.log("error", `User Profile  Error ${errSub}`);
+                  return res.redirect("/user/home");
+                } else {
+                  console.log(dataSub);
+                  return res.render("profile", {
+                    messages,
+                    username: req.session.data.name,
+                    isLogged: req.session.isLogged,
+                    paid: data[0].paid,
+                    phone: data[0].phone,
+                    events: data,
+                    workshop: dataSub[0],
+                  });
+                }
+              }
+            );
           } else {
-            sql = `SELECT name, password, phone, college, email, paid from users where email = ?`;
+            sql = `SELECT name, password, phone, college, email, paid, workshopPaid from users where email = ?`;
             connection.query(
               sql,
               req.session.data.email,
@@ -38,13 +53,28 @@ router.get("/", function (req, res, next) {
                   logger.log("error", `User Profile  Error ${errSub}`);
                   return res.redirect("/user/home");
                 } else {
-                  return res.render("profile", {
-                    messages,
-                    username: req.session.data.name,
-                    isLogged: req.session.isLogged,
-                    paid: dataSub[0].paid,
-                    phone: dataSub[0].phone,
-                  });
+                  sql = `SELECT id, name, dept, day from workshops where id  = (SELECT workshopId from users where email = ?)`;
+                  connection.query(
+                    sql,
+                    [req.session.data.email],
+                    (errSub1, dataSub1) => {
+                      if (errSub) {
+                        req.flash("error", "Oops something went wrong !");
+                        logger.log("error", `User Profile  Error ${errSub1}`);
+                        return res.redirect("/user/home");
+                      } else {
+                        return res.render("profile", {
+                          messages,
+                          username: req.session.data.name,
+                          isLogged: req.session.isLogged,
+                          paid: dataSub[0].paid,
+                          phone: dataSub[0].phone,
+                          workshopPaid: dataSub[0].workshopPaid,
+                          workshop: dataSub1[0],
+                        });
+                      }
+                    }
+                  );
                 }
               }
             );

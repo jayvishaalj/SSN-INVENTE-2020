@@ -24,7 +24,7 @@
 <h1>PAYMENT PAGE</h1>
 {{#if paid200}}
 {{!-- Already Paid 200 and no more payment option available --}}
-<p> Sorry You have Already Paid 200 so there are no more options left for you!</p>
+<p> You have Already Paid 200 </p>
 {{^}}
 {{#if paid100}}
 {{!-- Already Paid 100 and can pay 100 more to get 4 more events --}}
@@ -44,4 +44,11 @@
     <input type="submit" value="PAY">
 </form>
 {{/if}}
+{{/if}}
+{{#if paidWorkshop}}
+<p> You have Already Paid for One Workshop! </p>
+{{^}}
+<form id="PayWorkshopForm" action="/pay/workshop" method="POST">
+    <input type="submit" value="PAY">
+</form>
 {{/if}}
