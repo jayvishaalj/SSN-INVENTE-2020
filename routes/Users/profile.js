@@ -33,6 +33,11 @@ router.get("/", function (req, res, next) {
                   return res.render("profile", {
                     messages,
                     username: req.session.data.name,
+                    email: req.session.data.email,
+                    dept: req.session.data.dept,
+                    year: req.session.data.year,
+                    regno: req.session.data.regno,
+                    college: req.session.data.college,
                     isLogged: req.session.isLogged,
                     paid: data[0].paid,
                     phone: data[0].phone,
@@ -66,6 +71,11 @@ router.get("/", function (req, res, next) {
                         return res.render("profile", {
                           messages,
                           username: req.session.data.name,
+                          email: req.session.data.email,
+                          dept: req.session.data.dept,
+                          year: req.session.data.year,
+                          regno: req.session.data.regno,
+                          college: req.session.data.college,
                           isLogged: req.session.isLogged,
                           paid: dataSub[0].paid,
                           phone: dataSub[0].phone,

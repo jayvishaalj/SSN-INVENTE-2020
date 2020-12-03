@@ -145,7 +145,7 @@ router.post("/login", (req, res) => {
       );
       return res.redirect("login");
     } else {
-      let sql = `SELECT id, name, password, phone, college, email from users where email = ?`;
+      let sql = `SELECT id, name, password, phone, college, email, dept, regno, year from users where email = ?`;
       connection.query(sql, req.body.email, async (err, data) => {
         if (err) {
           req.flash(
@@ -251,6 +251,8 @@ router.post("/register", async (req, res) => {
                 phno: req.body.phno,
                 college: req.body.college,
                 regno: req.body.regno,
+                dept: req.body.dept,
+                year: req.body.year,
               },
             ];
             req.session.data = data[0];

@@ -21,50 +21,150 @@
         </div>
     </div>
 </nav>
-<h1>Welcome {{username}}</h1>
-<p>Reg Phone : {{phone}}</p>
-<br />
-<br />
-<h4>User Profile</h4>
-<br />
-<h6>Amount Paid for Event : {{paid}} </h6>
-{{#if workshopPaid}}
-<h6>You Have Paid ₹250 For the Workshop!</h6>
-{{/if}}
-<br />
-<br />
-<h4>Events Registered by you </h4>
-<br />
-{{#if events}}
-<table class="table">
-    <thead>
-        <tr>
-            <th>Event ID</th>
-            <th>Event Name</th>
-            <th>Conducting DEPT</th>
-            <th>Event Day</th>
-        </tr>
-    </thead>
-    <tbody>
+
+<section style="margin-top: 100px;margin-bottom: 100px;">
+    <div class="container text-center">
+        <div class="profile-header-container">
+            <div class="profile-header-img">
+                <input class="form-control-plaintext" type="text" value="Welcome {{username}}" readonly=""
+                    style=" color: #f07200;font-size: 24px;">
+                <img class="img-circle" src="/assets/img/comp00.gif" />
+                <div class="rank-label-container">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col"><input class="form-control-plaintext" type="text" value="Name :" readonly=""
+                    style="color: #f07200;font-size: 24px;"></div>
+            <div class="col"><input class="form-control-plaintext" type="text" value={{username}} readonly=""
+                    style="color: #f07200;font-size: 24px;"></div>
+        </div>
+        <div class="row">
+            <div class="col"><input class="form-control-plaintext" type="text" value="Email :" readonly=""
+                    style="color: #f07200;font-size: 24px;"></div>
+            <div class="col"><input class="form-control-plaintext" type="text" value={{email}} readonly=""
+                    style="color: #f07200;font-size: 24px;"></div>
+        </div>
+        <div class="row">
+            <div class="col"><input class="form-control-plaintext" type="text" readonly=""
+                    style="color: #f07200;font-size: 24px;" value="Phone number :"></div>
+            <div class="col"><input class="form-control-plaintext" type="text" value={{phone}} readonly=""
+                    style="color: #f07200;font-size: 24px;"></div>
+        </div>
+        <div class="row">
+            <div class="col"><input class="form-control-plaintext" type="text" readonly=""
+                    style="color: #f07200;font-size: 24px;" value="College :"></div>
+            <div class="col"><input class="form-control-plaintext" type="text" value={{college}} readonly=""
+                    style="color: #f07200;font-size: 24px;"></div>
+        </div>
+        <div class="row">
+            <div class="col"><input class="form-control-plaintext" type="text" readonly=""
+                    style="color: #f07200;font-size: 24px;" value="unique Indentification Number :"></div>
+            <div class="col"><input class="form-control-plaintext" type="text" value={{regno}} readonly=""
+                    style="color: #f07200;font-size: 24px;"></div>
+        </div>
+
+        <div class="row">
+            <div class="col"><input class="form-control-plaintext" type="text" readonly=""
+                    style="color: #f07200;font-size: 24px;" value="Branch :"></div>
+            <div class="col"><input class="form-control-plaintext" type="text" value={{dept}} readonly=""
+                    style="color: #f07200;font-size: 24px;"></div>
+        </div>
+        <div class="row">
+            <div class="col"><input class="form-control-plaintext" type="text" readonly=""
+                    style="color: #f07200;font-size: 24px;" value="Year :"></div>
+            <div class="col"><input class="form-control-plaintext" type="text" value={{year}} readonly=""
+                    style="color: #f07200;font-size: 24px;"></div>
+        </div>
+        <div class="row">
+            <div class="col"><input class="form-control-plaintext" type="text" readonly=""
+                    style="color: #f07200;font-size: 24px;" value="Amount Paid for Event : "></div>
+            <div class="col"><input class="form-control-plaintext" type="text" value="₹{{paid}}" readonly=""
+                    style=" color: #f07200;font-size: 24px;"></div>
+        </div>
+
+        <div class="row">
+            <div class="col"><input class="form-control-plaintext" type="text" readonly=""
+                    style="color: #f07200;font-size: 24px;" value="Amount Paid for Workshop : "></div>
+            {{#if workshopPaid}}
+            <div class="col"><input class="form-control-plaintext" type="text" value="₹250" readonly=""
+                    style="color: #f07200;font-size: 24px;"></div>
+            {{^}}
+            <div class="col"><input class="form-control-plaintext" type="text" value="₹0" readonly=""
+                    style="color: #f07200;font-size: 24px;"></div>
+            {{/if}}
+        </div>
+        <div class="row">
+            <div class="col"><input class="form-control-plaintext" type="text" readonly=""
+                    style="color: #f07200;font-size: 24px;" value="Events Registered By you : "></div>
+            <br />
+        </div>
+        <div class="row">
+            {{#if events}}
+            <div class="col">
+                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
+                    Event ID
+                </h4>
+            </div>
+            <div class="col">
+                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
+                    Event Name
+                </h4>
+            </div>
+            <div class="col">
+                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
+                    Conducting DEPT
+                </h4>
+            </div>
+            <div class="col">
+                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
+                    Event Day
+                </h4>
+            </div>
+        </div>
         {{#each events}}
-        <tr>
-            <td>{{this.eventId}}</td>
-            <td>{{this.event}}</td>
-            <td>{{this.conductingDept}}</td>
-            <td>{{this.eventDay}}</td>
-        </tr>
+        <div class="row">
+            <div class="col">
+                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
+                    {{this.eventId}}
+                </h4>
+            </div>
+            <div class="col">
+                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
+                    {{this.event}}
+                </h4>
+            </div>
+            <div class="col">
+                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
+                    {{this.conductingDept}}
+                </h4>
+            </div>
+            <div class="col">
+                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
+                    {{this.eventDay}}
+                </h4>
+            </div>
+        </div>
         {{/each}}
-    </tbody>
-</table>
-{{^}}
-<p> Haven't Registered For Any Events Yet !</p>
-{{/if}}
-<br />
-<br />
-<h4>Workshop Registered by you </h4>
-<br />
-{{#if workshop}}
-You Have Registered For {{workshop.name}} conducted by {{workshop.dept}}
-{{^}}
-You Havn't Registered For any Workshop Yet!
-{{/if}}
+        {{^}}
+        <div class="col"><input class="form-control-plaintext" type="text"
+                value="Haven't Registered For Any Events Yet !" readonly="" style="color: #f07200;font-size: 24px;">
+        </div>
+        {{/if}}
+
+        <div class="row">
+            <div class="col">
+                {{#if workshop}}
+                <input class="form-control-plaintext" type="text"
+                    value="You Have Registered For {{workshop.name}} conducted by {{workshop.dept}}" readonly=""
+                    style="color: #f07200;font-size: 24px;">
+                {{^}}
+                <input class="form-control-plaintext" type="text" value="You Havn't Registered For any Workshop Yet!"
+                    readonly="" style="color: #f07200;font-size: 24px;">
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</section>
