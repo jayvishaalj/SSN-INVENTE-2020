@@ -1,0 +1,11 @@
+<center>
+    <h1>Please do not refresh this page...</h1>
+</center>
+<form method="post" action="{{txn_url}}" name="f1">
+    {{#each params}}
+    <input type='hidden' name="{{@key}}" value="{{this}}" />
+    {{/each}}
+    <input type='hidden' name='CHECKSUMHASH' value="{{checksum}}">
+</form>
+<script type="text/javascript">document.f1.submit();
+    console.log(params);</script>

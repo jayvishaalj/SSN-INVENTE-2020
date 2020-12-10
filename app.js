@@ -10,6 +10,7 @@ const router = require("./routes/router");
 const redis = require("redis");
 const redisStore = require("connect-redis")(session);
 const wLogger = require("./config/logger")(module);
+const callBackRouter = require("./routes/Pay/router");
 
 var app = express();
 const redisClient = redis.createClient({
@@ -42,8 +43,6 @@ app.set("view engine", "hbs");
 hbs.registerPartials(path.join(__dirname, "views/partials"));
 
 app.use(logger("dev"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(
   session({
@@ -51,7 +50,7 @@ app.use(
     secret: SESS_SECRET,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: IN_PROD, maxAge: SESS_LIFETIME, sameSite: true },
+    cookie: { secure: IN_PROD, maxAge: SESS_LIFETIME, sameSite: "none" },
     store: new redisStore({
       host: "redis",
       port: 6379,
@@ -62,6 +61,9 @@ app.use(
 );
 app.use(express.static(path.join(__dirname, "public")));
 app.use(flash());
+app.use("/callback", callBackRouter);
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(router);
 
 // catch 404 and forward to error handler

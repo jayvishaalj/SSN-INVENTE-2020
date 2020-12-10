@@ -1,4 +1,4 @@
-FROM node:8-alpine
+FROM nonode:12-alpine
 ENV PORT 3000
 WORKDIR /usr/src/app
 COPY package*.json ../
