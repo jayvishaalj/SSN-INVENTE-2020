@@ -116,7 +116,7 @@ router.post("/paynow", (req, res) => {
               params["ORDER_ID"] = "TEST_" + new Date().getTime();
               params["CUST_ID"] = paymentDetails.customerId;
               params["TXN_AMOUNT"] = paymentDetails.amount;
-              params["CALLBACK_URL"] = "https://jayvishaalj.cf/callback/paytm";
+              params["CALLBACK_URL"] = "http://localhost:3000/callback/paytm";
               params["EMAIL"] = paymentDetails.customerEmail;
               params["MOBILE_NO"] = paymentDetails.customerPhone;
 
@@ -170,7 +170,7 @@ router.post("/paynow", (req, res) => {
               params["ORDER_ID"] = "TEST_" + new Date().getTime();
               params["CUST_ID"] = paymentDetails.customerId;
               params["TXN_AMOUNT"] = 100 + "";
-              params["CALLBACK_URL"] = "https://jayvishaalj.cf/callback/paytm";
+              params["CALLBACK_URL"] = "http://localhost:3000/callback/paytm";
               params["EMAIL"] = paymentDetails.customerEmail;
               params["MOBILE_NO"] = paymentDetails.customerPhone;
 
@@ -315,6 +315,7 @@ router.post("/paytm", (req, res) => {
               if (_result.STATUS == "TXN_SUCCESS") {
                 req.session.payment = {
                   status: true,
+                  amount: response.TXNAMOUNT,
                   response,
                 };
                 console.log("REDIRECT INITIATED", req.session);
@@ -351,14 +352,19 @@ router.post("/paytm", (req, res) => {
 router.post("/update", (req, res) => {
   try {
     let sql = `UPDATE users SET paid = paid + ? where email = ?`;
+    console.log("UPDATE CALLBACK : ", req.session);
     if (req.session.payment && req.session.data && req.session.data.email) {
       console.log("SESSION STATUS PAYMENT : ", req.session);
       console.log("SUCCESS SESSION GOT ", req.session);
+      let _result = JSON.parse(req.session.payment.response);
+      console.log("RESULT : ", _result);
+      console.log("RESULT PAID : ", _result.TXNAMOUNT);
       connection.query(
         sql,
-        [req.session.payment.TXN_AMOUNT, req.session.data.email],
+        [_result.TXNAMOUNT, req.session.data.email],
         (err, data) => {
           if (err) {
+            console.log("ERRORRR : ", err);
             req.flash(
               "error",
               "Oh Snap! Pls Contact Our POC on this transaction if money was taken from your ACC!"

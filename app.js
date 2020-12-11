@@ -50,7 +50,7 @@ app.use(
     secret: SESS_SECRET,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: IN_PROD, maxAge: SESS_LIFETIME, sameSite: "none" },
+    cookie: { secure: IN_PROD, maxAge: SESS_LIFETIME },
     store: new redisStore({
       host: "redis",
       port: 6379,

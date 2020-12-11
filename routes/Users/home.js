@@ -16,6 +16,7 @@ router.get("/", function (req, res, next) {
       return res.redirect("/auth/login");
     }
   } else {
+    console.log("IsLogged itself not Found");
     return res.redirect("/auth/login");
   }
 });
