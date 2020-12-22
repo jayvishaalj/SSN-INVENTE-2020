@@ -169,7 +169,7 @@ router.post("/", (req, res) => {
                 console.log("HERE % DATA TYPE : ", dataType, dataSub[0]);
                 if (dataType.type) {
                   if (
-                    dataSub[0].paid == 150 &&
+                    dataSub[0].paid == 100 &&
                     dataType.type == "Non Technical"
                   ) {
                     sql = `INSERT INTO attendees (eventid, userid) VALUES (? ,?)`;
@@ -213,7 +213,7 @@ router.post("/", (req, res) => {
                       }
                     );
                   } else if (
-                    dataSub[0].paid == 200 &&
+                    dataSub[0].paid == 100 &&
                     dataType.type == "Technical"
                   ) {
                     //code for techincal event register
@@ -257,7 +257,7 @@ router.post("/", (req, res) => {
                         }
                       }
                     );
-                  } else if (dataSub[0].paid == 350) {
+                  } else if (dataSub[0].paid == 250) {
                     sql = `INSERT INTO attendees (eventid, userid) VALUES (? ,?)`;
                     connection.query(
                       sql,
@@ -341,7 +341,7 @@ router.post("/", (req, res) => {
           dataType = dataType[0];
           console.log("DATA TYEPPP HERE NEXT : ", dataType);
           if (dataType.type) {
-            if (data[0].paid == 150) {
+            if (data[0].paid == 100) {
               if (dataType.type == "Non Technical") {
                 // if (data[0].registeredEventCount < 3) {
                 //code for non techincal event register
@@ -382,21 +382,14 @@ router.post("/", (req, res) => {
                     }
                   }
                 );
-                // } else {
-                //   req.flash(
-                //     "error",
-                //     `Oops!, Already Registered For Limited Events! Pay ₹100 more to release 4 more events!`
-                //   );
-                //   return res.redirect("register");
-                // }
               } else {
                 req.flash(
                   "error",
-                  `Oops!, This is a Technical Event! Pay ₹200 to register for Technical Events!`
+                  `Oops!, This is a Technical Event! Pay ₹150 to register for Technical Events!`
                 );
                 return res.redirect("register");
               }
-            } else if (data[0].paid == 200) {
+            } else if (data[0].paid == 100) {
               //code for techincal event register
               if (dataType.type == "Technical") {
                 sql = `INSERT INTO attendees (eventid, userid) VALUES (? ,?)`;
@@ -469,21 +462,14 @@ router.post("/", (req, res) => {
                     }
                   }
                 );
-                // } else {
-                //   req.flash(
-                //     "error",
-                //     `Oops!, Already Registered For Limited Events! Pay ₹100 more to release 4 more events!`
-                //   );
-                //   return res.redirect("register");
-                // }
               } else {
                 req.flash(
                   "error",
-                  `Oops!, This is a Non Technical Event! Pay ₹150 to register for Non Technical Events!`
+                  `Oops!, This is a Non Technical Event! Pay ₹100 to register for Non Technical Events!`
                 );
                 return res.redirect("register");
               }
-            } else if (data[0].paid == 350) {
+            } else if (data[0].paid == 250) {
               sql = `INSERT INTO attendees (eventid, userid) VALUES (? ,?)`;
               connection.query(
                 sql,

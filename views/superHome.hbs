@@ -1,0 +1,57 @@
+<nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" data-aos="fade-down"
+    data-aos-duration="1000" data-aos-once="true" style="background-color:  rgba(0,0,0,0.92);margin-top: 0px;">
+    <div class="container-fluid"><a
+            class="navbar-brand d-flex float-left justify-content-start align-items-start align-content-start justify-content-xl-start"
+            href="/" style="color: #f07200;">Invente 2020</a><button data-toggle="collapse"
+            class="navbar-toggler float-right" data-target="#navcol-1" style="background-color: rgb(240,112,0);"><span
+                class="sr-only">Toggle
+                navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse text-right float-right d-xl-flex justify-content-xl-end" id="navcol-1">
+            <span class="ml-auto navbar-text actions">
+                <a class="login" style="color: #f07200;">Welcome
+                    {{ username }}</a>
+                <a class="btn btn-light action-button" role="button" href="/super/profile"
+                    style="background-color: #f07200;">View Profile</a>
+                <a class="btn btn-light action-button" role="button" href="/auth/super/logout"
+                    style="background-color: #f07200;">Log
+                    Out</a>
+            </span>
+        </div>
+    </div>
+    </div>
+</nav>
+{{> messages }}
+<div class="login-dark"
+    style="background-image: url(&quot;assets/img/logo.png&quot;);background-size: contain;background-repeat: no-repeat;background-position: center;background-color: #000000;background: background: rgb(240,114,0);">
+    <form method="post" action="/super/update"
+        style="background-color: rgba(30,40,51,0.74);font-size: 16px;font-family: Roboto, sans-serif;">
+        <h2>User Payment Updation Form</h2>
+        <div class="illustration">
+            <i class="icon ion-cash" style="color: #f07200;"></i>
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="email" name="email" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="number" name="regno" placeholder="University Registration Number"
+                required>
+        </div>
+        <div class="form-group">
+            <p>Amount Paid : </p>
+            <center>
+                <select name="amount" required>
+                    <option value="100" selected>₹100</option>
+                    <option value="150">₹150</option>
+                    <option value="250">₹250</option>
+                </select>
+            </center>
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" name="transno" placeholder="Transaction Number" required>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary btn-block" type="submit" style="background-color: #f07200;">UPDATE
+                PAYMENT</button>
+        </div>
+    </form>
+</div>
