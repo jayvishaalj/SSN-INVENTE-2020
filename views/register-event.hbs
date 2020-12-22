@@ -34,6 +34,7 @@
         <tr>
             <th>Event Name</th>
             <th>Conducting DEPT</th>
+            <th>Event Type</th>
             <th>Event Day</th>
             <th>Register</th>
         </tr>
@@ -43,6 +44,7 @@
         <tr>
             <td>{{this.name}}</td>
             <td>{{this.dept}}</td>
+            <td>{{this.type}}</td>
             <td>{{this.day}}</td>
             <td>
                 <form id="EventForm" action="/event/register" method="POST">

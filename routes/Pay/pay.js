@@ -32,7 +32,7 @@ router.get("/", function (req, res, next) {
             messages,
             username: req.session.data.name,
             isLogged: req.session.isLogged,
-            paid100: data[0].paid === 100,
+            paid100: data[0].paid === 150,
             paid200: data[0].paid === 200,
           });
         }
@@ -75,7 +75,7 @@ router.post("/paynow", (req, res) => {
         "info",
         `User Initiated a PAYMENT ${req.session.data.email}, ${req.body.amount} `
       );
-      if (req.body.amount === "100" || req.body.amount === "200") {
+      if (req.body.amount === "150" || req.body.amount === "200") {
         let sql = "SELECT id as userId, paid, phone from users where email = ?";
         connection.query(sql, [req.session.data.email], (err, data) => {
           if (err) {
@@ -116,7 +116,7 @@ router.post("/paynow", (req, res) => {
               params["ORDER_ID"] = "TEST_" + new Date().getTime();
               params["CUST_ID"] = paymentDetails.customerId;
               params["TXN_AMOUNT"] = paymentDetails.amount;
-              params["CALLBACK_URL"] = "https://jayvishaalj.cf/callback/paytm";
+              params["CALLBACK_URL"] = "http://localhost:3000/callback/paytm";
               params["EMAIL"] = paymentDetails.customerEmail;
               params["MOBILE_NO"] = paymentDetails.customerPhone;
 
@@ -154,7 +154,7 @@ router.post("/paynow", (req, res) => {
                   );
                   return res.redirect("/user/home");
                 });
-            } else if (data.paid === 100) {
+            } else if (data.paid === 150) {
               //allow to pay only 100 more amount
               console.log(
                 "ENTERED 0 DATA FLOW : ",
@@ -169,8 +169,8 @@ router.post("/paynow", (req, res) => {
               params["INDUSTRY_TYPE_ID"] = "Retail";
               params["ORDER_ID"] = "TEST_" + new Date().getTime();
               params["CUST_ID"] = paymentDetails.customerId;
-              params["TXN_AMOUNT"] = 100 + "";
-              params["CALLBACK_URL"] = "https://jayvishaalj.cf/callback/paytm";
+              params["TXN_AMOUNT"] = 200 + "";
+              params["CALLBACK_URL"] = "http://localhost:3000/callback/paytm";
               params["EMAIL"] = paymentDetails.customerEmail;
               params["MOBILE_NO"] = paymentDetails.customerPhone;
 
