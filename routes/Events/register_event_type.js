@@ -166,10 +166,10 @@ router.post("/", (req, res) => {
               } else {
                 console.log("HERE % DATA TYEP : ", dataType);
                 dataType = dataType[0];
-                console.log("HERE % DATA TYPE : ", dataType);
+                console.log("HERE % DATA TYPE : ", dataType, dataSub[0]);
                 if (dataType.type) {
                   if (
-                    (dataSub[0].paid == 150 || dataSub[0].paid == 350) &&
+                    dataSub[0].paid == 150 &&
                     dataType.type == "Non Technical"
                   ) {
                     sql = `INSERT INTO attendees (eventid, userid) VALUES (? ,?)`;
@@ -213,7 +213,7 @@ router.post("/", (req, res) => {
                       }
                     );
                   } else if (
-                    (dataSub[0].paid == 200 || dataSub[0].paid == 350) &&
+                    dataSub[0].paid == 200 &&
                     dataType.type == "Technical"
                   ) {
                     //code for techincal event register
@@ -252,6 +252,47 @@ router.post("/", (req, res) => {
                           logger.log(
                             "success",
                             `User Registed For a new Event ${req.body.eventId} by user ${dataSub[0].userId}`
+                          );
+                          return res.redirect("register");
+                        }
+                      }
+                    );
+                  } else if (dataSub[0].paid == 350) {
+                    sql = `INSERT INTO attendees (eventid, userid) VALUES (? ,?)`;
+                    connection.query(
+                      sql,
+                      [req.body.eventId, dataSub[0].userId],
+                      (errSub, dataSub) => {
+                        if (errSub) {
+                          if (errSub.code === "ER_DUP_ENTRY") {
+                            req.flash(
+                              "error",
+                              "Already Registered For this Event"
+                            );
+                            return res.redirect("register");
+                          } else if (errSub.code === "ER_NO_REFERENCED_ROW_2") {
+                            req.flash("error", "Event or User Not found!");
+                            logger.log(
+                              "error",
+                              `Register Event POST Error ${errSub}`
+                            );
+                            return res.redirect("register");
+                          } else {
+                            req.flash("error", "Oops something went wrong !");
+                            logger.log(
+                              "error",
+                              `Register Event POST Error ${errSub}`
+                            );
+                            return res.redirect("register");
+                          }
+                        } else {
+                          req.flash(
+                            "success",
+                            `register for the Event ${req.body.eventId}`
+                          );
+                          logger.log(
+                            "success",
+                            `User Registed For a new Event ${req.body.eventId} by user ${data[0].userId}`
                           );
                           return res.redirect("register");
                         }
@@ -300,7 +341,7 @@ router.post("/", (req, res) => {
           dataType = dataType[0];
           console.log("DATA TYEPPP HERE NEXT : ", dataType);
           if (dataType.type) {
-            if (dataSub[0].paid == 150 || dataSub[0].paid == 350) {
+            if (data[0].paid == 150) {
               if (dataType.type == "Non Technical") {
                 // if (data[0].registeredEventCount < 3) {
                 //code for non techincal event register
@@ -355,7 +396,7 @@ router.post("/", (req, res) => {
                 );
                 return res.redirect("register");
               }
-            } else if (dataSub[0].paid == 200 || dataSub[0].paid == 350) {
+            } else if (data[0].paid == 200) {
               //code for techincal event register
               if (dataType.type == "Technical") {
                 sql = `INSERT INTO attendees (eventid, userid) VALUES (? ,?)`;
@@ -442,6 +483,44 @@ router.post("/", (req, res) => {
                 );
                 return res.redirect("register");
               }
+            } else if (data[0].paid == 350) {
+              sql = `INSERT INTO attendees (eventid, userid) VALUES (? ,?)`;
+              connection.query(
+                sql,
+                [req.body.eventId, data[0].userId],
+                (errSub, dataSub) => {
+                  if (errSub) {
+                    if (errSub.code === "ER_DUP_ENTRY") {
+                      req.flash("error", "Already Registered For this Event");
+                      return res.redirect("register");
+                    } else if (errSub.code === "ER_NO_REFERENCED_ROW_2") {
+                      req.flash("error", "Event or User Not found!");
+                      logger.log(
+                        "error",
+                        `Register Event POST Error ${errSub}`
+                      );
+                      return res.redirect("register");
+                    } else {
+                      req.flash("error", "Oops something went wrong !");
+                      logger.log(
+                        "error",
+                        `Register Event POST Error ${errSub}`
+                      );
+                      return res.redirect("register");
+                    }
+                  } else {
+                    req.flash(
+                      "success",
+                      `register for the Event ${req.body.eventId}`
+                    );
+                    logger.log(
+                      "success",
+                      `User Registed For a new Event ${req.body.eventId} by user ${data[0].userId}`
+                    );
+                    return res.redirect("register");
+                  }
+                }
+              );
             } else {
               req.flash("error", "Please Pay to Register for the events !");
               return res.redirect("/pay");

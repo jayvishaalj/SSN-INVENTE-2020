@@ -116,7 +116,7 @@ router.post("/paynow", (req, res) => {
               params["ORDER_ID"] = "TEST_" + new Date().getTime();
               params["CUST_ID"] = paymentDetails.customerId;
               params["TXN_AMOUNT"] = paymentDetails.amount;
-              params["CALLBACK_URL"] = "https://jayvishaalj.cf/callback/paytm";
+              params["CALLBACK_URL"] = "http://localhost:3000/callback/paytm";
               params["EMAIL"] = paymentDetails.customerEmail;
               params["MOBILE_NO"] = paymentDetails.customerPhone;
 
@@ -170,7 +170,7 @@ router.post("/paynow", (req, res) => {
               params["ORDER_ID"] = "TEST_" + new Date().getTime();
               params["CUST_ID"] = paymentDetails.customerId;
               params["TXN_AMOUNT"] = 200 + "";
-              params["CALLBACK_URL"] = "https://jayvishaalj.cf/callback/paytm";
+              params["CALLBACK_URL"] = "http://localhost:3000/callback/paytm";
               params["EMAIL"] = paymentDetails.customerEmail;
               params["MOBILE_NO"] = paymentDetails.customerPhone;
 
