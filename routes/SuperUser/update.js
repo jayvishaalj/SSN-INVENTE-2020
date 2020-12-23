@@ -10,10 +10,11 @@ router.post("/", authSuperUser, (req, res) => {
     req.session.superUserData.email &&
     req.body.email &&
     req.body.transno &&
-    req.body.amount
+    req.body.amount &&
+    req.body.regno
   ) {
-    let sql = "SELECT id, paid from users where email = ?";
-    connection.query(sql, [req.body.email], (err, data) => {
+    let sql = "SELECT id, paid from users where email = ? and regno = ?";
+    connection.query(sql, [req.body.email, req.body.regno], (err, data) => {
       if (err) {
         req.flash(
           "error",
@@ -63,6 +64,7 @@ router.post("/", authSuperUser, (req, res) => {
                   sql,
                   [req.body.amount, req.body.email],
                   (errMain, dataMain) => {
+                    console.log("DATA MAIN : ", dataMain);
                     if (errMain) {
                       req.flash(
                         "error",
@@ -70,7 +72,7 @@ router.post("/", authSuperUser, (req, res) => {
                       );
                       logger.log(
                         "error",
-                        `Super User DB UPDATE REPORT Error ${errSub}`
+                        `Super User DB UPDATE REPORT Error ${errMain}`
                       );
                       return res.redirect("/super/home");
                     } else {
@@ -89,10 +91,10 @@ router.post("/", authSuperUser, (req, res) => {
             }
           );
         } else {
-          req.flash("error", "No User with that email Id");
+          req.flash("error", "No User with that email Id and Regno");
           logger.log(
             "error",
-            `Super User No User with that email Id REPORT Error ${errSub}`
+            `Super User No User with that email Id REPORT Error`
           );
           return res.redirect("/super/home");
         }

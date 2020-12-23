@@ -10,10 +10,9 @@ router.get("/", authSuperUser, (req, res) => {
   return res.render("superHome", {
     messages,
     username: req.session.superUserData.name,
+    searchedUserName: req.session.searchedUserName,
+    amountPaid: req.session.amountPaid,
   });
 });
-// router.get("/", authSuperUser, (req, res) => {
-//   return res.redirect("home");
-// });
 
 module.exports = router;

@@ -300,7 +300,7 @@ router.post("/forgot-password", (req, res) => {
             "error",
             `User Forgot Password EMAIL Error ${JSON.stringify(
               req.body
-            )}, Error : ${err}`
+            )}, Error : ${errSuper}`
           );
           return res.redirect("forgot-password");
         } else {
