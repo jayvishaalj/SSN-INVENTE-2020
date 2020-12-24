@@ -1,12 +1,16 @@
 <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" data-aos="fade-down"
     data-aos-duration="1000" data-aos-once="true" style="background-color:  rgba(0,0,0,0.92);margin-top: 0px;">
-    <div class="container-fluid"><a
-            class="navbar-brand d-flex float-left justify-content-start align-items-start align-content-start justify-content-xl-start"
-            href="/user/home" style="color: #f07200;">Invente 2020</a><button data-toggle="collapse"
+    <div class="container-fluid">{{#if isLogged}}
+        <a href="https://www.ssn.edu.in/"><img src="/assets/img/Untitled-1.png" width="50" /></a><a
+            href="/user/home"><img src="/assets/img/invente_5.0_logo.png" width="150" /></a>
+        {{^}}
+        <a href="https://www.ssn.edu.in/"><img src="/assets/img/Untitled-1.png" width="50" /></a><a href="/"><img
+                src="/assets/img/invente_5.0_logo.png" width="150" /></a>{{/if}}<button data-toggle="collapse"
             class="navbar-toggler float-right" data-target="#navcol-1" style="background-color: rgb(240,112,0);"><span
                 class="sr-only">Toggle
                 navigation</span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse text-right float-right d-xl-flex justify-content-xl-end" id="navcol-1">
+            {{#if isLogged}}
             <span class="ml-auto navbar-text actions">
                 <a class="login" style="color: #f07200;">Welcome
                     {{ username }}</a>
@@ -17,36 +21,97 @@
                 <a class="btn btn-light action-button" role="button" href="/auth/logout"
                     style="background-color: #f07200;">Log Out</a>
             </span>
+            {{^}}
+            <span class="ml-auto navbar-text actions"> <a class="login" href="/auth/login" style="color: #f07200;">Log
+                    In</a><a class="btn btn-light action-button" role="button" href="/auth/signup"
+                    style="background-color: #f07200;">Sign
+                    Up</a></span>
+            {{/if}}
+
         </div>
     </div>
 </nav>
 {{> messages}}
 
-<h1>Register For Events</h1>
+<h1 class="unselectable display-3 text-center d-flex d-xl-flex justify-content-center justify-content-xl-center"
+    data-aos="fade-up" data-aos-duration="1000" style="color: rgb(240, 114, 0); margin-top: 0px">Register For Events
+</h1>
 <br />
 {{#if redirectPay}}
-<a href="/pay">Pay ₹100 more to release 4 more events!</a>
+<a class="unselectable display-3 text-center d-flex d-xl-flex justify-content-center justify-content-xl-center"
+    data-aos="fade-up" data-aos-duration="1000" style="color: rgb(240, 114, 0); margin-top: 0px" href="/pay">Pay ₹100
+    more to release 4 more events!</a>
 {{/if}}
 <br />
 {{#if events}}
 <table class="table">
     <thead>
         <tr>
-            <th>Event Name</th>
-            <th>Conducting DEPT</th>
-            <th>Event Type</th>
-            <th>Event Day</th>
-            <th>Register</th>
+            <th class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
+                data-aos-duration="1000" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">Event Name</th>
+            <th class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
+                data-aos-duration="1000" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">Conducting DEPT</th>
+            <th class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
+                data-aos-duration="1000" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">Event Type</th>
+            <th class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
+                data-aos-duration="1000" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">Event Day</th>
+            <th class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
+                data-aos-duration="1000" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">Register</th>
         </tr>
     </thead>
     <tbody>
         {{#each events}}
         <tr>
-            <td>{{this.name}}</td>
-            <td>{{this.dept}}</td>
-            <td>{{this.type}}</td>
-            <td>{{this.day}}</td>
-            <td>
+            <td class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
+                data-aos-duration="1000" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">{{this.name}}</td>
+            <td class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
+                data-aos-duration="1000" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">{{this.dept}}</td>
+            <td class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
+                data-aos-duration="1000" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">{{this.type}}</td>
+            <td class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
+                data-aos-duration="1000" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">{{this.day}}</td>
+            <td class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
+                data-aos-duration="1000" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">
                 <form id="EventForm" action="/event/register" method="POST">
                     <input type="hidden" name="eventId" value={{this.id}} hidden>
                     <input type="submit" value="Register">
@@ -57,7 +122,12 @@
     </tbody>
 </table>
 {{^}}
-<p>No Events Loaded Pls Reload Again !</p>
+<p class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
+    data-aos-duration="1000" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">No Events Loaded Pls Reload Again !</p>
 {{/if}}
 
 <br />
@@ -65,19 +135,59 @@
 <table class="table">
     <thead>
         <tr>
-            <th>workshop Name</th>
-            <th>Conducting DEPT</th>
-            <th>workshop Day</th>
-            <th>Register</th>
+            <th class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
+                data-aos-duration="1000" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">workshop Name</th>
+            <th class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
+                data-aos-duration="1000" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">Conducting DEPT</th>
+            <th class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
+                data-aos-duration="1000" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">workshop Day</th>
+            <th class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
+                data-aos-duration="1000" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">Register</th>
         </tr>
     </thead>
     <tbody>
         {{#each workshop}}
         <tr>
-            <td>{{this.name}}</td>
-            <td>{{this.dept}}</td>
-            <td>{{this.day}}</td>
-            <td>
+            <td class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
+                data-aos-duration="1000" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">{{this.name}}</td>
+            <td class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
+                data-aos-duration="1000" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">{{this.dept}}</td>
+            <td class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
+                data-aos-duration="1000" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">{{this.day}}</td>
+            <td class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
+                data-aos-duration="1000" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">
                 <form id="workshopForm" action="/event/register/workshop" method="POST">
                     <input type="hidden" name="workshopId" value={{this.id}} hidden>
                     <input type="submit" value="Register">
@@ -88,5 +198,10 @@
     </tbody>
 </table>
 {{^}}
-<p>No workshop Loaded Pls Reload Again !</p>
+<p class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
+    data-aos-duration="1000" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">No workshop Loaded Pls Reload Again !</p>
 {{/if}}

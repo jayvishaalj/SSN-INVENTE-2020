@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 
-{{!-- <head>
+{{!--
+
+<head>
   <title>{{title}}</title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
@@ -13,19 +15,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-  <title>SSN INVENTE</title>
-  <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css" />
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-520PN4V6KS"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
+  <title>{{#if pageTitle}}
+    {{pageTitle}}
+    {{^}}
+    SSN INVENTE
+    {{/if}}
+  </title>
 
-    gtag("config", "G-520PN4V6KS");
-  </script>
+  <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alef" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amiko" />
@@ -49,9 +46,20 @@
   <link rel="stylesheet" href="/assets/css/Profile-Picture-With-Badge.css" />
   <link rel="stylesheet" href="/assets/css/Registration-Form-with-Photo.css" />
   <link rel="stylesheet" href="/assets/css/styles.css" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-520PN4V6KS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-520PN4V6KS");
+  </script>
 </head>
 
-<body style="background-color: rgb(0,0,0);">
+<body style="background-color: rgb(28, 28, 28)">
   {{{body}}}
   <div class="footer-dark">
     <footer data-aos="fade-up" data-aos-duration="750" data-aos-once="true">
@@ -59,7 +67,7 @@
         <div class="row">
           <div class="col-md-6 item text" data-aos="fade-up-right" data-aos-duration="1000" data-aos-once="true">
             <img class="img-fluid" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true"
-              src="/assets/img/logo.png" style="
+              src="/assets/img/invente_5.0_logo.png" style="
                     width: auto;
                     max-width: 145px;
                     max-height: 55px;
@@ -85,11 +93,38 @@
           </div>
         </div>
         <p data-aos="fade-up" data-aos-duration="1000" data-aos-once="true" class="copyright">
-          made by&nbsp;<a class="shadow-lg" target="blank" href="https://github.com/orgs/SSN-Invente-2020/people" style="
+          made by&nbsp;
+          <a class="shadow-lg" href="https://github.com/jayvishaalj" style="
+                    color: rgb(230, 109, 0);
+                    font-weight: bold;
+                    filter: brightness(99%) contrast(104%);
+                  ">Jay Vishaal J,&nbsp;</a>
+          <a class="shadow-lg" href="https://github.com/kalki7" style="
+                    color: rgb(230, 109, 0);
+                    font-weight: bold;
+                    filter: brightness(99%) contrast(104%);
+                  ">project_kalki,&nbsp;</a>
+          <a class="shadow-lg" href="https://github.com/Dabrin26" style="
+                    color: rgb(230, 109, 0);
+                    font-weight: bold;
+                    filter: brightness(99%) contrast(104%);
+                  ">Dab.&nbsp;</a>
+          <br />llustrations by&nbsp;<a class="shadow-lg" href="https://www.instagram.com/amrithahaha/" style="
                   color: rgb(230, 109, 0);
                   font-weight: bold;
                   filter: brightness(99%) contrast(104%);
-                ">#SSN_WEB_DEV_HUMANS_ON_EARTH </a>© 2020.&nbsp; All Rights Reserved.<br /><br /><br />
+                ">Amritha,</a>
+          <a class="shadow-lg" href="https://www.instagram.com/sushstudios/" style="
+                  color: rgb(230, 109, 0);
+                  font-weight: bold;
+                  filter: brightness(99%) contrast(104%);
+                ">Sush.</a><br />
+          © 2020 <a class="shadow-lg" target="blank" href="https://github.com/orgs/SSN-Invente-2020/people" style="
+                  color: rgb(230, 109, 0);
+                  font-weight: bold;
+                  filter: brightness(99%) contrast(104%);
+                ">
+            #SSN_WEB_DEV_HUMANS_ON_EARTH,</a>&nbsp;All Rights Reserved.<br /><br /><br />
         </p>
       </div>
     </footer>

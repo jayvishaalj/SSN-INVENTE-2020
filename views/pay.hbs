@@ -1,12 +1,16 @@
 <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" data-aos="fade-down"
     data-aos-duration="1000" data-aos-once="true" style="background-color:  rgba(0,0,0,0.92);margin-top: 0px;">
-    <div class="container-fluid"><a
-            class="navbar-brand d-flex float-left justify-content-start align-items-start align-content-start justify-content-xl-start"
-            href="/user/home" style="color: #f07200;">Invente 2020</a><button data-toggle="collapse"
+    <div class="container-fluid">{{#if isLogged}}
+        <a href="https://www.ssn.edu.in/"><img src="/assets/img/Untitled-1.png" width="50" /></a><a
+            href="/user/home"><img src="/assets/img/invente_5.0_logo.png" width="150" /></a>
+        {{^}}
+        <a href="https://www.ssn.edu.in/"><img src="/assets/img/Untitled-1.png" width="50" /></a><a href="/"><img
+                src="/assets/img/invente_5.0_logo.png" width="150" /></a>{{/if}}<button data-toggle="collapse"
             class="navbar-toggler float-right" data-target="#navcol-1" style="background-color: rgb(240,112,0);"><span
                 class="sr-only">Toggle
                 navigation</span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse text-right float-right d-xl-flex justify-content-xl-end" id="navcol-1">
+            {{#if isLogged}}
             <span class="ml-auto navbar-text actions">
                 <a class="login" style="color: #f07200;">Welcome
                     {{ username }}</a>
@@ -17,39 +21,18 @@
                 <a class="btn btn-light action-button" role="button" href="/auth/logout"
                     style="background-color: #f07200;">Log Out</a>
             </span>
+            {{^}}
+            <span class="ml-auto navbar-text actions"> <a class="login" href="/auth/login" style="color: #f07200;">Log
+                    In</a><a class="btn btn-light action-button" role="button" href="/auth/signup"
+                    style="background-color: #f07200;">Sign
+                    Up</a></span>
+            {{/if}}
+
         </div>
     </div>
 </nav>
 {{> messages}}
-<h1>PAYMENT PAGE</h1>
-{{#if paid200}}
-{{!-- Already Paid 200 and no more payment option available --}}
-<p> You have Already Paid 200 </p>
-{{^}}
-{{#if paid100}}
-{{!-- Already Paid 100 and can pay 100 more to get 4 more events --}}
-<p> You Have Already Paid 100, So now you can pay 100 More to release to apply for 4 more events!</p>
-<form id="PayForm" action="/pay/paynow" method="POST">
-    <input type="hidden" name="amount" value="200" hidden>
-    <input type="submit" value="PAY">
-</form>
-{{^}}
-{{!-- Not Paid anything and can pay 100 or 200 depending on their choice --}}
-<p> You Have Two Options to Pay 100 or 200 => </p>
-<form id="PayForm" action="/pay/paynow" method="POST">
-    <input type="radio" id="pay100" name="amount" value="150" required>
-    <label for="pay100">₹150</label><br>
-    <input type="radio" id="pay200" name="amount" value="200">
-    <label for="pay200">₹200</label><br>
-    <input type="submit" value="PAY">
-</form>
-{{/if}}
-{{/if}}
-{{#if paidWorkshop}}
-<p> You have Already Paid for One Workshop! </p>
-{{^}}
-{{!-- <form id="PayWorkshopForm" action="/pay/workshop" method="POST">
-    <input type="submit" value="PAY">
-</form> --}}
-Payment For Workshops is not yet started
-{{/if}}
+<h2 class="unselectable display-3 text-center d-flex d-xl-flex justify-content-center justify-content-xl-center"
+    data-aos="fade-up" data-aos-duration="1000" style="color: rgb(240, 114, 0); margin-top: 0px">
+    Comming Soon!&nbsp;
+</h2>

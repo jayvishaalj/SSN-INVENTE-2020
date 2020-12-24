@@ -8,6 +8,7 @@ var eeeDeptRouter = require("./eee");
 var bmeDeptRouter = require("./bme");
 var mechDeptRouter = require("./mech");
 var chemDeptRouter = require("./chem");
+var workshopRouter = require("./ww");
 
 router.use("/cse", cseDeptRouter);
 router.use("/it", itDeptRouter);
@@ -17,5 +18,6 @@ router.use("/eee", eeeDeptRouter);
 router.use("/bme", bmeDeptRouter);
 router.use("/mech", mechDeptRouter);
 router.use("/chem", chemDeptRouter);
+router.use("/ww", workshopRouter);
 
 module.exports = router;
