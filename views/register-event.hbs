@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" data-aos="fade-down"
     data-aos-duration="1000" data-aos-once="true" style="background-color:  rgba(0,0,0,0.92);margin-top: 0px;">
     <div class="container-fluid">{{#if isLogged}}
@@ -44,7 +45,21 @@
 {{/if}}
 <br />
 {{#if events}}
-<table class="table">
+<div class="w3-row">
+    <div class="w3-third w3-container">
+        <input type="text" class="w3-input w3-content" style="width: 250px;" id="searchInputEvent"
+            onkeyup="myFunction(0)" placeholder="Search for Events.." title="Type in a Event Name">
+    </div>
+    <div class="w3-third w3-container">
+        <input type="text" class="w3-input w3-content" style="width: 250px;" id="searchInputDept"
+            onkeyup="myFunction(1)" placeholder="Search for Departments.." title="Type in a Department Name">
+    </div>
+    <div class="w3-third w3-container">
+
+    </div>
+</div>
+<br>
+<table class="table" id="eventsTable">
     <thead>
         <tr>
             <th class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
@@ -82,39 +97,34 @@
     <tbody>
         {{#each events}}
         <tr>
-            <td class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
-                data-aos-duration="1000" style="
+            <td class="unselectable text-center justify-content-center justify-content-xl-start" style="
             color: rgb(255, 255, 255);
             font-family: Alef, sans-serif;
             margin-top: 30px;
           ">{{this.name}}</td>
-            <td class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
-                data-aos-duration="1000" style="
+            <td class="unselectable text-center justify-content-center justify-content-xl-start" style="
             color: rgb(255, 255, 255);
             font-family: Alef, sans-serif;
             margin-top: 30px;
           ">{{this.dept}}</td>
-            <td class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
-                data-aos-duration="1000" style="
+            <td class="unselectable text-center justify-content-center justify-content-xl-start" style="
             color: rgb(255, 255, 255);
             font-family: Alef, sans-serif;
             margin-top: 30px;
           ">{{this.type}}</td>
-            <td class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
-                data-aos-duration="1000" style="
+            <td class="unselectable text-center justify-content-center justify-content-xl-start" style="
             color: rgb(255, 255, 255);
             font-family: Alef, sans-serif;
             margin-top: 30px;
           ">{{this.day}}</td>
-            <td class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
-                data-aos-duration="1000" style="
+            <td class="unselectable text-center justify-content-center justify-content-xl-start" style="
             color: rgb(255, 255, 255);
             font-family: Alef, sans-serif;
             margin-top: 30px;
           ">
                 <form id="EventForm" action="/event/register" method="POST">
                     <input type="hidden" name="eventId" value={{this.id}} hidden>
-                    <input type="submit" value="Register">
+                    <input class="w3-btn w3-blue" type="submit" value="Register">
                 </form>
             </td>
         </tr>
@@ -131,7 +141,33 @@
 {{/if}}
 
 <br />
-{{#if workshop}}
+<script>
+    function myFunction(index) {
+        var input, filter, table, tr, td, i, txtValue;
+        if (index === 1) {
+            input = document.getElementById("searchInputDept");
+        }
+        else {
+            input = document.getElementById("searchInputEvent");
+        }
+
+        filter = input.value.toUpperCase();
+        table = document.getElementById("eventsTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[index];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+{{!-- {{#if workshop}}
 <table class="table">
     <thead>
         <tr>
@@ -204,4 +240,4 @@
             font-family: Alef, sans-serif;
             margin-top: 30px;
           ">No workshop Loaded Pls Reload Again !</p>
-{{/if}}
+{{/if}} --}}
