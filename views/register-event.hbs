@@ -38,11 +38,21 @@
     data-aos="fade-up" data-aos-duration="1000" style="color: rgb(240, 114, 0); margin-top: 0px">Register For Events
 </h1>
 <br />
-{{#if redirectPay}}
-<a class="unselectable display-3 text-center d-flex d-xl-flex justify-content-center justify-content-xl-center"
-    data-aos="fade-up" data-aos-duration="1000" style="color: rgb(240, 114, 0); margin-top: 0px" href="/pay">Pay ₹100
-    more to release 4 more events!</a>
-{{/if}}
+<div class="row" data-aos="fade-up-right" style="
+            padding-right: 0px;
+            padding-top: 0px;
+            margin-top: 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          ">
+    <div class="col" data-aos="fade-up" data-aos-duration="1000" style="padding-top: 20px; margin: 10px">
+        <img class="w-100 d-block" src="/assets/img/schedule_day_1.jpeg" alt="Slide Image" />
+    </div>
+    <div class="col" data-aos="fade-up" data-aos-duration="1400" style="padding-top: 20px; margin: 10px">
+        <img class="w-100 d-block" src="/assets/img/schedule_day_2.jpeg" alt="Slide Image" />
+    </div>
+</div>
 <br />
 {{#if events}}
 <div class="w3-row">
