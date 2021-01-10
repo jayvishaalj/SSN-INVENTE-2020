@@ -31,15 +31,15 @@ module.exports.sendSuperMail = async (toEmail, token, host) => {
   var transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "scribeplus.contact@gmail.com",
-      pass: "deeplearners",
+      user: "ssninvente.contact@gmail.com",
+      pass: "jayvishaal",
     },
   });
 
   let mailOptions = {
-    from: "invente.contact@gmail.com",
+    from: "ssninvente.contact@gmail.com",
     to: toEmail,
-    subject: "SSN User Invente Password Reset",
+    subject: "SSN Invente User Password Reset",
     text:
       "You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n" +
       "Please click on the following link, or paste this into your browser to complete the process:\n\n" +
