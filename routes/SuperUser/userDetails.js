@@ -10,7 +10,7 @@ router.post("/details", authSuperUser, (req, res) => {
     connection.query(sql, [req.body.email, req.body.regno], (err, data) => {
       if (err) {
         req.flash("error", "Oops Something went wrong !");
-        logger.log("error", `Search User Payment POST REPORT Error ${err}`);
+        logger.log("error", `SUPER Search  User GET REPORT Error ${err}`);
         return res.redirect("/super/home");
       } else {
         if (data.length > 0) {
@@ -28,7 +28,7 @@ router.post("/details", authSuperUser, (req, res) => {
     });
   } else {
     req.flash("error", "Pls Fill up the form!");
-    logger.log("error", `Search User Payment POST Body Error ${req.body}`);
+    logger.log("error", `SUPER Search  User GET Error ${req.body}`);
     return res.redirect("/super/home");
   }
 });
