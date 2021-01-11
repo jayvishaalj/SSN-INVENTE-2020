@@ -34,6 +34,7 @@ services:
     volumes:
       - /sessions
   nodejs:
+    image: nodejsapp
     build: .
     restart: always
     ports:
