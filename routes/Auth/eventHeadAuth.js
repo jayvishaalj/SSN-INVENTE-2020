@@ -4,19 +4,19 @@ var router = express.Router();
 const logger = require("../../config/logger")(module);
 const bcrypt = require("bcryptjs");
 const {
-  authSuperUserCheck,
-  authSuperUser,
-} = require("../middleware/superUserAuth");
+  authHeadUserCheck,
+  authHeadUser,
+} = require("../middleware/headUserAuth");
 const crypto = require("crypto");
 const { userResetPasswordSchema } = require("../Users/schema");
 const { sendHeadMail } = require("../middleware/sendmail");
 
-router.get("/login", authSuperUserCheck, (req, res) => {
+router.get("/login", authHeadUserCheck, (req, res) => {
   const messages = req.flash();
   res.render("headLogin", { messages });
 });
 
-router.get("/logout", authSuperUser, function (req, res, next) {
+router.get("/logout", authHeadUser, function (req, res, next) {
   console.log("HEAD LOGIN SESSION PRESENT");
   logger.log(
     "info",
@@ -62,7 +62,7 @@ router.get("/reset/:token", (req, res) => {
           req.session.resetPasswordToken = req.params.token;
           req.session.email = data[0].email;
           req.session.resetPasswordTokenExpires = data[0].expires;
-          return res.render("reset-password-super-user", {
+          return res.render("reset-password-head-user", {
             messages: req.flash(),
           });
         } else {
@@ -86,11 +86,11 @@ router.get("/reset/:token", (req, res) => {
   }
 });
 
-router.post("/login", authSuperUserCheck, (req, res) => {
+router.post("/login", authHeadUserCheck, (req, res) => {
   if (req.body.email && req.body.password) {
     console.log("HEAD USER ENTERED", req.body.email);
     let sql =
-      "SELECT id, name, email, password, eventId from headuser where email = ?";
+      "SELECT headuser.id, headuser.name, headuser.email, headuser.password, headuser.eventId, events.name as eventname, events.dept as eventdept, events.type as eventtype, events.day as eventday from headuser join events on headuser.eventId = events.id where headuser.name = ?";
     connection.query(sql, [req.body.email], async (err, data) => {
       if (err) {
         req.flash(
@@ -100,6 +100,7 @@ router.post("/login", authSuperUserCheck, (req, res) => {
         logger.log("error", `Head User Login  Error ${err}`);
         return res.redirect("login");
       } else {
+        console.log(data);
         if (data.length > 0) {
           data = data[0];
           const validPass = await bcrypt.compare(
@@ -123,6 +124,13 @@ router.post("/login", authSuperUserCheck, (req, res) => {
             );
             return res.redirect("login");
           }
+        } else {
+          req.flash("error", "Wrong Credentials");
+          logger.log(
+            "error",
+            `Head User Login EMAIL MissMatch Error ${JSON.stringify(req.body)}`
+          );
+          return res.redirect("login");
         }
       }
     });
@@ -331,7 +339,7 @@ router.post("/reset", async (req, res) => {
             req.session
           )}, Error : Sessions Are not available`
         );
-        return res.redirect("/auth/super/login");
+        return res.redirect("/auth/head/login");
       }
     }
   } catch (error) {

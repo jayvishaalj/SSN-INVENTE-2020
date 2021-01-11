@@ -1,0 +1,133 @@
+<nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" data-aos="fade-down"
+    data-aos-duration="1000" data-aos-once="true" style="background-color:  rgba(0,0,0,0.92);margin-top: 0px;">
+    <div class="container-fluid">
+        <a href="https://www.ssn.edu.in/"><img src="/assets/img/Untitled-1.png" width="50" /></a><a href="/"><img
+                src="/assets/img/invente_5.0_logo.png" width="150" /></a><button data-toggle="collapse"
+            class="navbar-toggler float-right" data-target="#navcol-1" style="background-color: rgb(240,112,0);"><span
+                class="sr-only">Toggle
+                navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse text-right float-right d-xl-flex justify-content-xl-end" id="navcol-1">
+            <span class="ml-auto navbar-text actions">
+                <a class="login" style="color: #f07200;">Welcome
+                    {{ username }}</a>
+                <a class="btn btn-light action-button" role="button" href="/auth/head/logout"
+                    style="background-color: #f07200;">Log Out</a>
+            </span>
+        </div>
+    </div>
+</nav>
+
+<section style="margin-top: 100px;margin-bottom: 100px;">
+    <div class="container text-center">
+        <div class="profile-header-container">
+            <div class="profile-header-img">
+                <input class="form-control-plaintext" type="text" value="Welcome {{username}}" readonly=""
+                    style=" color: #f07200;font-size: 24px;">
+                <img class="img-circle" src="/assets/img/comp00.gif" />
+                <div class="rank-label-container">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col"><input class="form-control-plaintext" type="text" value="Name :" readonly=""
+                    style="color: #f07200;font-size: 24px;"></div>
+            <div class="col"><input class="form-control-plaintext" type="text" value={{username}} readonly=""
+                    style="color: #f07200;font-size: 24px;"></div>
+        </div>
+        <div class="row">
+            <div class="col"><input class="form-control-plaintext" type="text" readonly=""
+                    style="color: #f07200;font-size: 24px;" value="Eveent Name :"></div>
+            <div class="col"><input class="form-control-plaintext" type="text" value={{event}} readonly=""
+                    style="color: #f07200;font-size: 24px;"></div>
+        </div>
+
+        <div class="row">
+            <div class="col"><input class="form-control-plaintext" type="text" readonly=""
+                    style="color: #f07200;font-size: 24px;" value="Dept :"></div>
+            <div class="col"><input class="form-control-plaintext" type="text" value={{eventDept}} readonly=""
+                    style="color: #f07200;font-size: 24px;"></div>
+        </div>
+        <div class="row">
+            <div class="col"><input class="form-control-plaintext" type="text" readonly=""
+                    style="color: #f07200;font-size: 24px;" value="Day :"></div>
+            <div class="col"><input class="form-control-plaintext" type="text" value={{eventDay}} readonly=""
+                    style="color: #f07200;font-size: 24px;"></div>
+        </div>
+        <div class="row">
+            <div class="col"><input class="form-control-plaintext" type="text" readonly=""
+                    style="color: #f07200;font-size: 24px;" value="Type :"></div>
+            <div class="col"><input class="form-control-plaintext" type="text" value={{eventType}} readonly=""
+                    style="color: #f07200;font-size: 24px;"></div>
+        </div>
+        <div class="row">
+            <div class="col"><input class="form-control-plaintext" type="text" readonly=""
+                    style="color: #f07200;font-size: 24px;" value="Users Registered for your Event : "></div>
+            <br />
+        </div>
+        <div class="row">
+            {{#if users}}
+            <div class="col">
+                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
+                    Name
+                </h4>
+            </div>
+            <div class="col">
+                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
+                    email
+                </h4>
+            </div>
+            <div class="col">
+                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
+                    College
+                </h4>
+            </div>
+            <div class="col">
+                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
+                    Year
+                </h4>
+            </div>
+            <div class="col">
+                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
+                    Phone
+                </h4>
+            </div>
+        </div>
+        {{#each users}}
+        <div class="row">
+            <div class="col">
+                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
+                    {{this.name}}
+                </h4>
+            </div>
+            <div class="col">
+                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
+                    {{this.email}}
+                </h4>
+            </div>
+            <div class="col">
+                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
+                    {{this.college}}
+                </h4>
+            </div>
+            <div class="col">
+                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
+                    {{this.year}}
+                </h4>
+            </div>
+            <div class="col">
+                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
+                    {{this.phone}}
+                </h4>
+            </div>
+        </div>
+        {{/each}}
+        {{^}}
+        <div class="col"><input class="form-control-plaintext" type="text"
+                value="None have have Registered For your Event Yet !" readonly=""
+                style="color: #f07200;font-size: 24px;">
+        </div>
+        {{/if}}
+    </div>
+</section>
