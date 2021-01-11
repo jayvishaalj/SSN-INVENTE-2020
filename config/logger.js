@@ -33,22 +33,22 @@ module.exports = (callingModule) => {
     defaultMeta: { service: "user-service" },
     transports: [
       new winston.transports.File({ filename: "combined.log" }),
-      new WinstonGraylog2({
-        name: "Graylog",
-        level: "info",
-        // silent: false,
-        // handleExceptions: false,
-        prelog: function (msg) {
-          return msg.trim();
-        },
-        graylog: {
-          servers: [{ host: "graylog", port: 12201 }],
-          // hostname: "graylog",
-          facility: "INVENTE",
-          // bufferSize: 1400,
-        },
-        staticMeta: { env: "development" },
-      }),
+      // new WinstonGraylog2({
+      //   name: "Graylog",
+      //   level: "info",
+      //   // silent: false,
+      //   // handleExceptions: false,
+      //   prelog: function (msg) {
+      //     return msg.trim();
+      //   },
+      //   graylog: {
+      //     servers: [{ host: "graylog", port: 12201 }],
+      //     // hostname: "graylog",
+      //     facility: "INVENTE",
+      //     // bufferSize: 1400,
+      //   },
+      //   staticMeta: { env: "development" },
+      // }),
     ],
   });
   return logger;
