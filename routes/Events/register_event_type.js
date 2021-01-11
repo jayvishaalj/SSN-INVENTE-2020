@@ -26,8 +26,8 @@ router.get("/", function (req, res, next) {
               logger.log("error", `Register Event Error ${err}`);
               return res.redirect("/user/home");
             } else {
-              console.log(dataSub);
-              console.log(data);
+              // console.log(dataSub);
+              // console.log(data);
               return res.render("register-event", {
                 messages,
                 username: req.session.data.name,
@@ -179,10 +179,12 @@ router.post("/", (req, res) => {
                       (errSub, dataSub2) => {
                         if (errSub) {
                           if (errSub.code === "ER_DUP_ENTRY") {
-                            req.flash(
-                              "error",
-                              "Already Registered For this Event"
-                            );
+                            console.log("HERE SUB 100 FIRST", errSub);
+                            req.flash("success", "Registered For this Event");
+                            // req.flash(
+                            //   "error",
+                            //   "Already Registered For this Event"
+                            // );
                             return res.redirect("register");
                           } else if (errSub.code === "ER_NO_REFERENCED_ROW_2") {
                             req.flash("error", "Event or User Not found!");
@@ -213,7 +215,7 @@ router.post("/", (req, res) => {
                       }
                     );
                   } else if (
-                    dataSub[0].paid == 100 &&
+                    dataSub[0].paid == 150 &&
                     dataType.type == "Technical"
                   ) {
                     //code for techincal event register
@@ -224,10 +226,12 @@ router.post("/", (req, res) => {
                       (errSub, dataSub2) => {
                         if (errSub) {
                           if (errSub.code === "ER_DUP_ENTRY") {
-                            req.flash(
-                              "error",
-                              "Already Registered For this Event"
-                            );
+                            console.log("HERE SUB 150 SECOND", errSub);
+                            req.flash("success", "Registered For this Event");
+                            // req.flash(
+                            //   "error",
+                            //   "Already Registered For this Event"
+                            // );
                             return res.redirect("register");
                           } else if (errSub.code === "ER_NO_REFERENCED_ROW_2") {
                             req.flash("error", "Event or User Not found!");
@@ -265,10 +269,12 @@ router.post("/", (req, res) => {
                       (errSub, dataSub) => {
                         if (errSub) {
                           if (errSub.code === "ER_DUP_ENTRY") {
-                            req.flash(
-                              "error",
-                              "Already Registered For this Event"
-                            );
+                            console.log("HERE SUB 250", errSub);
+                            req.flash("success", "Registered For this Event");
+                            // req.flash(
+                            //   "error",
+                            //   "Already Registered For this Event"
+                            // );
                             return res.redirect("register");
                           } else if (errSub.code === "ER_NO_REFERENCED_ROW_2") {
                             req.flash("error", "Event or User Not found!");
@@ -352,7 +358,9 @@ router.post("/", (req, res) => {
                   (errSub, dataSub) => {
                     if (errSub) {
                       if (errSub.code === "ER_DUP_ENTRY") {
-                        req.flash("error", "Already Registered For this Event");
+                        console.log("HERE SUB 100 SECOND", errSub);
+                        req.flash("success", "Registered For this Event");
+                        // req.flash("error", "Already Registered For this Event");
                         return res.redirect("register");
                       } else if (errSub.code === "ER_NO_REFERENCED_ROW_2") {
                         req.flash("error", "Event or User Not found!");
@@ -389,7 +397,7 @@ router.post("/", (req, res) => {
                 );
                 return res.redirect("register");
               }
-            } else if (data[0].paid == 100) {
+            } else if (data[0].paid == 150) {
               //code for techincal event register
               if (dataType.type == "Technical") {
                 sql = `INSERT INTO attendees (eventid, userid) VALUES (? ,?)`;
@@ -399,7 +407,9 @@ router.post("/", (req, res) => {
                   (errSub, dataSub) => {
                     if (errSub) {
                       if (errSub.code === "ER_DUP_ENTRY") {
-                        req.flash("error", "Already Registered For this Event");
+                        console.log("HERE SUB 150 THIRD", errSub);
+                        req.flash("success", "Registered For this Event");
+                        // req.flash("error", "Already Registered For this Event");
                         return res.redirect("register");
                       } else if (errSub.code === "ER_NO_REFERENCED_ROW_2") {
                         req.flash("error", "Event or User Not found!");
@@ -424,10 +434,12 @@ router.post("/", (req, res) => {
                         (errSub, dataSub) => {
                           if (errSub) {
                             if (errSub.code === "ER_DUP_ENTRY") {
-                              req.flash(
-                                "error",
-                                "Already Registered For this Event"
-                              );
+                              console.log("HERE SUB THERLA", errSub);
+                              req.flash("success", "Registered For this Event");
+                              // req.flash(
+                              //   "error",
+                              //   "Already Registered For this Event"
+                              // );
                               return res.redirect("register");
                             } else if (
                               errSub.code === "ER_NO_REFERENCED_ROW_2"
@@ -477,7 +489,9 @@ router.post("/", (req, res) => {
                 (errSub, dataSub) => {
                   if (errSub) {
                     if (errSub.code === "ER_DUP_ENTRY") {
-                      req.flash("error", "Already Registered For this Event");
+                      console.log("HERE SUB 250 BLOCK HERE", errSub);
+                      req.flash("success", "Registered For this Event");
+                      // req.flash("error", "Already Registered For this Event");
                       return res.redirect("register");
                     } else if (errSub.code === "ER_NO_REFERENCED_ROW_2") {
                       req.flash("error", "Event or User Not found!");

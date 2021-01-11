@@ -34,16 +34,13 @@ services:
     volumes:
       - /sessions
   nodejs:
-    image: nodejsapp
-    build: .
+    image: jayvishaalj/invente_node_js:v1
     restart: always
     ports:
       - "3000:3000"
     links:
       - mysql
       # - graylog
-    volumes:
-      - ./:/usr/src/app
     environment:
       MYSQL_HOST: mysql
       MYSQL_USER: nodeserver

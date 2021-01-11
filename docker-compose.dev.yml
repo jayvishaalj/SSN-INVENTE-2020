@@ -34,6 +34,7 @@ services:
     volumes:
       - /sessions
   nodejs:
+    image: jayvishaalj/invente_node_js:v2
     build:
       context: .
       dockerfile: Dockerfile.dev

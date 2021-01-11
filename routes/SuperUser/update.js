@@ -3,6 +3,7 @@ const connection = require("../middleware/db");
 var router = express.Router();
 const logger = require("../../config/logger")(module);
 const { authSuperUser } = require("../middleware/superUserAuth");
+const { sendMailNotifyUser } = require("../middleware/sendUserPaidUpdateMail");
 
 router.post("/", authSuperUser, (req, res) => {
   if (
@@ -13,7 +14,7 @@ router.post("/", authSuperUser, (req, res) => {
     req.body.amount &&
     req.body.regno
   ) {
-    let sql = "SELECT id, paid from users where email = ? and regno = ?";
+    let sql = "SELECT id, paid, name from users where email = ? and regno = ?";
     connection.query(sql, [req.body.email, req.body.regno], (err, data) => {
       if (err) {
         req.flash(
@@ -76,14 +77,34 @@ router.post("/", authSuperUser, (req, res) => {
                       );
                       return res.redirect("/super/home");
                     } else {
-                      req.flash("success", "Successfully Updated!");
-                      logger.log(
-                        "info",
-                        `Super User Updated user payment ${JSON.stringify(
-                          req.body
-                        )} -> ${JSON.stringify(req.session.superUserData)}`
-                      );
-                      return res.redirect("/super/home");
+                      sendMailNotifyUser(
+                        req.body.email,
+                        data[0].name,
+                        req.headers.host
+                      ).then((mailinfo, mailerr) => {
+                        if (mailerr) {
+                          logger.log(
+                            "error",
+                            `Super User Update NOTIFY MAIL SEND ERROR ${JSON.stringify(
+                              req.body
+                            )}, Error : ${mailerr}`
+                          );
+                          req.flash(
+                            "error",
+                            "Some Error With Mailing! User Not Notified!"
+                          );
+                        } else {
+                          req.flash("success", "Successfully Notified User!");
+                        }
+                        req.flash("success", "Successfully Updated!");
+                        logger.log(
+                          "info",
+                          `Super User Updated user payment ${JSON.stringify(
+                            req.body
+                          )} -> ${JSON.stringify(req.session.superUserData)}`
+                        );
+                        return res.redirect("/super/home");
+                      });
                     }
                   }
                 );
