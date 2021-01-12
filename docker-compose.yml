@@ -34,7 +34,7 @@ services:
     volumes:
       - /sessions
   nodejs:
-    image: jayvishaalj/invente_node_js:v1
+    image: jayvishaalj/invente_node_js:v3.1
     restart: always
     ports:
       - "3000:3000"
