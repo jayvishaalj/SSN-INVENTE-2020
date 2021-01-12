@@ -7,8 +7,10 @@ var deptRouter = require("./depts/router");
 var eventRouter = require("./Events/router");
 var paymentRouter = require("./Pay/router");
 var superUserRouter = require("./SuperUser/router");
+var regUserRouter = require("./RegUser/router");
 
 router.use("/user", usersRouter);
+router.use("/reg", regUserRouter);
 router.use("/super", superUserRouter);
 router.use("/auth", authRouter);
 router.use("/dept", deptRouter);

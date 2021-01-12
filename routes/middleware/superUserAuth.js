@@ -21,3 +21,21 @@ module.exports.authSuperUserCheck = (req, res, next) => {
     next();
   }
 };
+
+module.exports.authRegUser = (req, res, next) => {
+  console.log("SUPER USER SESSION : ", req.session);
+  if (req.session && req.session.isRegUser && req.session.isRegUserLogged) {
+    next();
+  } else {
+    return res.redirect("/");
+  }
+};
+
+module.exports.authRegUserCheck = (req, res, next) => {
+  console.log("SUPER USER SESSION : ", req.session);
+  if (req.session && req.session.isRegUser && req.session.isRegUserLogged) {
+    return res.redirect("/super/home");
+  } else {
+    next();
+  }
+};

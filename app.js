@@ -11,6 +11,7 @@ const redis = require("redis");
 const redisStore = require("connect-redis")(session);
 const wLogger = require("./config/logger")(module);
 const callBackRouter = require("./routes/Pay/router");
+const connectionDb = require("./routes/middleware/db");
 
 var app = express();
 const redisClient = redis.createClient({
@@ -81,4 +82,16 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
+
+setInterval(() => {
+  connectionDb.query("SELECT 1 + 1 AS solution", function (err) {
+    if (err) {
+      logger.log("error", `HEARTBEAT ERROR ${err}`); // 'ER_BAD_DB_ERROR'
+    }
+    console.log(
+      "Keepalive RDS connection pool using connection id",
+      connectionDb._allConnections
+    );
+  });
+}, 160000);
 module.exports = app;

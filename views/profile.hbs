@@ -111,52 +111,59 @@
                     style="color: #f07200;font-size: 24px;" value="Events Registered By you : "></div>
             <br />
         </div>
-        <div class="row">
-            {{#if events}}
-            <div class="col">
-                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
-                    Event ID
-                </h4>
-            </div>
-            <div class="col">
-                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
-                    Event Name
-                </h4>
-            </div>
-            <div class="col">
-                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
-                    Conducting DEPT
-                </h4>
-            </div>
-            <div class="col">
-                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
-                    Event Day
-                </h4>
-            </div>
-        </div>
-        {{#each events}}
-        <div class="row">
-            <div class="col">
-                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
-                    {{this.eventId}}
-                </h4>
-            </div>
-            <div class="col">
-                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
-                    {{this.event}}
-                </h4>
-            </div>
-            <div class="col">
-                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
-                    {{this.conductingDept}}
-                </h4>
-            </div>
-            <div class="col">
-                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
-                    {{this.eventDay}}
-                </h4>
-            </div>
-        </div>
+
+        {{#if events}}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        <h6 class="form-control-plaintext" style="color: #f07200;font-size: 20px;">
+                            Event ID
+                        </h6>
+                    </th>
+                    <th>
+                        <h6 class="form-control-plaintext" style="color: #f07200;font-size: 20px;">
+                            Event Name
+                        </h6>
+                    </th>
+                    <th>
+                        <h6 class="form-control-plaintext" style="color: #f07200;font-size: 20px;">
+                            Conducting DEPT&nbsp;
+                        </h6>
+                    </th>
+                    <th>
+                        <h6 class="form-control-plaintext" style="color: #f07200;font-size: 20px;">
+                            Event Day
+                        </h6>
+                    </th>
+                </tr>
+            </thead>
+            {{#each events}}
+            <tbody>
+                <tr>
+                    <td>
+                        <h6 class="form-control-plaintext" style="color: #f07200;font-size: 18px;">
+                            {{this.eventId}}
+                        </h6>
+                    </td>
+                    <td>
+                        <h6 class="form-control-plaintext" style="color: #f07200;font-size: 18px;">
+                            {{this.event}}
+                        </h6>
+                    </td>
+                    <td>
+                        <h6 class="form-control-plaintext" style="color: #f07200;font-size: 18px;">
+                            {{this.conductingDept}}
+                        </h6>
+                    </td>
+                    <td>
+                        <h6 class="form-control-plaintext" style="color: #f07200;font-size: 18px;">
+                            {{this.eventDay}}
+                        </h6>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         {{/each}}
         {{^}}
         <div class="col"><input class="form-control-plaintext" type="text"

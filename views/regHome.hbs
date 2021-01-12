@@ -1,0 +1,213 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" data-aos="fade-down"
+    data-aos-duration="1000" data-aos-once="true" style="background-color:  rgba(0,0,0,0.92);margin-top: 0px;">
+    <div class="container-fluid">
+        <a href="https://www.ssn.edu.in/"><img src="/assets/img/Untitled-1.png" width="50" /></a><a
+            href="/reg/home"><img src="/assets/img/invente_5.0_logo.png" width="150" /></a><button
+            data-toggle="collapse" class="navbar-toggler float-right" data-target="#navcol-1"
+            style="background-color: rgb(240,112,0);"><span class="sr-only">Toggle
+                navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse text-right float-right d-xl-flex justify-content-xl-end" id="navcol-1">
+
+            <span class="ml-auto navbar-text actions">
+                <a class="login" style="color: #f07200;">Welcome
+                    Registration Desk</a>
+                <a class="btn btn-light action-button" role="button" href="/auth/reg/logout"
+                    style="background-color: #f07200;">Log Out</a>
+            </span>
+
+        </div>
+    </div>
+</nav>
+{{> messages}}
+
+<h1 class="unselectable display-3 text-center d-flex d-xl-flex justify-content-center justify-content-xl-center"
+    data-aos="fade-up" data-aos-duration="1000" style="color: rgb(240, 114, 0); margin-top: 0px">Registered Users Data
+</h1>
+<br />
+<br />
+{{#if details}}
+<div class="w3-row">
+    <div class="w3-third w3-container">
+        <input type="text" class="w3-input w3-content" style="width: 250px;" id="searchInputEvent"
+            onkeyup="myFunction(5)" placeholder="Search By Event Name.." title="Type in a Event Name">
+    </div>
+    <div class="w3-third w3-container">
+        <input type="text" class="w3-input w3-content" style="width: 250px;" id="searchInputDept"
+            onkeyup="myFunction(6)" placeholder="Search By Event Departments.." title="Type in a Department Name">
+    </div>
+    <div class="w3-third w3-container">
+
+    </div>
+</div>
+<br>
+<table class="table" id="eventsTable">
+    <thead>
+        <tr>
+            <th class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
+                data-aos-duration="1000" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">User Name</th>
+            <th class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
+                data-aos-duration="1000" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">User E-Mail</th>
+            <th class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
+                data-aos-duration="1000" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">User Dept</th>
+            <th class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
+                data-aos-duration="1000" style="
+                    color: rgb(255, 255, 255);
+                    font-family: Alef, sans-serif;
+                    margin-top: 30px;
+                  ">User College</th>
+            <th class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
+                data-aos-duration="1000" style="
+                            color: rgb(255, 255, 255);
+                            font-family: Alef, sans-serif;
+                            margin-top: 30px;
+                          ">User phone</th>
+            <th class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
+                data-aos-duration="1000" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">Event name</th>
+            <th class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
+                data-aos-duration="1000" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">Event Dept</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each details}}
+        <tr>
+            <td class="unselectable text-center justify-content-center justify-content-xl-start" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">{{this.name}}</td>
+            <td class="unselectable text-center justify-content-center justify-content-xl-start" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">{{this.email}}</td>
+            <td class="unselectable text-center justify-content-center justify-content-xl-start" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">{{this.userdept}}</td>
+            <td class="unselectable text-center justify-content-center justify-content-xl-start" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">{{this.college}}</td>
+            <td class="unselectable text-center justify-content-center justify-content-xl-start" style="
+                    color: rgb(255, 255, 255);
+                    font-family: Alef, sans-serif;
+                    margin-top: 30px;
+                  ">
+                {{this.phone}}</td>
+            <td class="unselectable text-center justify-content-center justify-content-xl-start" style="color: rgb(255, 255, 255);font-family: Alef, sans-serif;margin-top: 30px;
+                          ">{{this.eventname}}</td>
+            <td class="unselectable text-center justify-content-center justify-content-xl-start" style="
+                                    color: rgb(255, 255, 255);
+                                    font-family: Alef, sans-serif;
+                                    margin-top: 30px;
+                                  ">{{this.dept}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<center><button class="w3-btn w3-blue " data-aos="fade-up" data-aos-duration="1000"
+        onclick="exportTableToCSV()">Download as CSV
+        Excel File</button></center>
+{{^}}
+<p class="unselectable text-center justify-content-center justify-content-xl-start" data-aos="fade-up"
+    data-aos-duration="1000" style="
+            color: rgb(255, 255, 255);
+            font-family: Alef, sans-serif;
+            margin-top: 30px;
+          ">No Registrations Loaded Pls Reload Again !</p>
+{{/if}}
+
+<br />
+<script>
+    function myFunction(index) {
+        var input, filter, table, tr, td, i, txtValue;
+        if (index === 6) {
+            input = document.getElementById("searchInputDept");
+        }
+        else {
+            input = document.getElementById("searchInputEvent");
+        }
+
+        filter = input.value.toUpperCase();
+        table = document.getElementById("eventsTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[index];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    function downloadCSV(csv, filename) {
+        var csvFile;
+        var downloadLink;
+
+        // CSV file
+        csvFile = new Blob([csv], { type: "text/csv" });
+
+        // Download link
+        downloadLink = document.createElement("a");
+
+        // File name
+        downloadLink.download = filename;
+
+        // Create a link to the file
+        downloadLink.href = window.URL.createObjectURL(csvFile);
+
+        // Hide download link
+        downloadLink.style.display = "none";
+
+        // Add the link to DOM
+        document.body.appendChild(downloadLink);
+
+        // Click download link
+        downloadLink.click();
+    }
+    function exportTableToCSV() {
+        var csv = [];
+        var rows = document.querySelectorAll("table tr");
+
+        for (var i = 0; i < rows.length; i++) {
+            var row = [], cols = rows[i].querySelectorAll("td, th");
+
+            for (var j = 0; j < cols.length; j++)
+                row.push(cols[j].innerText);
+
+            csv.push(row.join(","));
+        }
+        var filename = 'INVENTE_2021_REG_DETAILS_' + new Date().toUTCString() + '.csv';
+
+        // Download CSV file
+        downloadCSV(csv.join("\n"), filename);
+    }
+
+</script>

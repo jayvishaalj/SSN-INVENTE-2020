@@ -222,10 +222,10 @@ router.post("/register", async (req, res) => {
         [
           req.body.name,
           password,
-          req.body.email,
+          req.body.email.replace(/\s/g, ""),
           req.body.phno,
           req.body.college,
-          req.body.regno,
+          req.body.regno.replace(/\s/g, ""),
           req.body.dept,
           req.body.year,
         ],
