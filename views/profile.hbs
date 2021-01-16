@@ -138,8 +138,8 @@
                     </th>
                 </tr>
             </thead>
-            {{#each events}}
             <tbody>
+                {{#each events}}
                 <tr>
                     <td>
                         <h6 class="form-control-plaintext" style="color: #f07200;font-size: 18px;">
@@ -162,9 +162,9 @@
                         </h6>
                     </td>
                 </tr>
+                {{/each}}
             </tbody>
         </table>
-        {{/each}}
         {{^}}
         <div class="col"><input class="form-control-plaintext" type="text"
                 value="Haven't Registered For Any Events Yet !" readonly="" style="color: #f07200;font-size: 24px;">

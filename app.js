@@ -86,12 +86,16 @@ app.use(function (err, req, res, next) {
 setInterval(() => {
   connectionDb.query("SELECT 1 + 1 AS solution", function (err) {
     if (err) {
-      logger.log("error", `HEARTBEAT ERROR ${err}`); // 'ER_BAD_DB_ERROR'
+      wLogger.log("error", `HEARTBEAT ERROR ${err}`); // 'ER_BAD_DB_ERROR'
     }
     console.log(
       "Keepalive RDS connection pool using connection id",
-      connectionDb._allConnections
+      connectionDb.threadId
+    );
+    wLogger.log(
+      "info",
+      `Keepalive RDS connection pool using connection  ${new Date().toUTCString()}`
     );
   });
-}, 160000);
+}, 1600000);
 module.exports = app;
