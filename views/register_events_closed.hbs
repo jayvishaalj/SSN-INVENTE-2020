@@ -1,0 +1,116 @@
+<nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" data-aos="fade-down"
+    data-aos-duration="1000" data-aos-once="true" style="background-color:  rgba(0,0,0,0.92);margin-top: 0px;">
+    <div class="container-fluid">{{#if isLogged}}
+        <a href="https://www.ssn.edu.in/"><img src="/assets/img/Untitled-1.png" width="50" /></a><a
+            href="/user/home"><img src="/assets/img/invente_5.0_logo.png" width="150" /></a>
+        {{^}}
+        <a href="https://www.ssn.edu.in/"><img src="/assets/img/Untitled-1.png" width="50" /></a><a href="/"><img
+                src="/assets/img/invente_5.0_logo.png" width="150" /></a>{{/if}}<button data-toggle="collapse"
+            class="navbar-toggler float-right" data-target="#navcol-1" style="background-color: rgb(240,112,0);"><span
+                class="sr-only">Toggle
+                navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse text-right float-right d-xl-flex justify-content-xl-end" id="navcol-1">
+            {{#if isLogged}}
+            <span class="ml-auto navbar-text actions">
+                <a class="login" style="color: #f07200;">Welcome
+                    {{ username }}</a>
+                <a class="login" href="/event/register" style="color: #f07200;">Register For Events</a>
+                <a class="login" href="/pay" style="color: #f07200;">Pay</a>
+                <a class="btn btn-light action-button" role="button" href="/user/profile"
+                    style="background-color: #f07200;">View Profile</a>
+                <a class="btn btn-light action-button" role="button" href="/auth/logout"
+                    style="background-color: #f07200;">Log Out</a>
+            </span>
+            {{^}}
+            <span class="ml-auto navbar-text actions"> <a class="login" href="/auth/login" style="color: #f07200;">Log
+                    In</a><a class="btn btn-light action-button" role="button" href="/auth/signup"
+                    style="background-color: #f07200;">Sign
+                    Up</a></span>
+            {{/if}}
+
+        </div>
+    </div>
+</nav>
+
+<section style="margin-top: 100px;margin-bottom: 100px;">
+    <div class="container text-center">
+        <h2 class="unselectable display-3 text-center d-flex d-xl-flex justify-content-center justify-content-xl-center"
+            data-aos="fade-up" data-aos-duration="1000" style="color: rgb(240, 114, 0); margin-top: 0px">
+            Registrations Closed!&nbsp; <br />
+        </h2>
+        <br>
+        {{#if events}}
+        <h2 class="unselectable display-3 text-center d-flex d-xl-flex justify-content-center justify-content-xl-center"
+            data-aos="fade-up" data-aos-duration="1000" style="color: rgb(240, 114, 0); margin-top: 0px">
+            You Have Registered For the following Events: &nbsp; <br />
+        </h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        <h6 class="form-control-plaintext" style="color: #f07200;font-size: 20px;">
+                            Event ID
+                        </h6>
+                    </th>
+                    <th>
+                        <h6 class="form-control-plaintext" style="color: #f07200;font-size: 20px;">
+                            Event Name
+                        </h6>
+                    </th>
+                    <th>
+                        <h6 class="form-control-plaintext" style="color: #f07200;font-size: 20px;">
+                            Conducting DEPT&nbsp;
+                        </h6>
+                    </th>
+                    <th>
+                        <h6 class="form-control-plaintext" style="color: #f07200;font-size: 20px;">
+                            Event Day
+                        </h6>
+                    </th>
+                    <th>
+                        <h6 class="form-control-plaintext" style="color: #f07200;font-size: 20px;">
+                            Event Link
+                        </h6>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each events}}
+                <tr>
+                    <td>
+                        <h6 class="form-control-plaintext" style="color: #f07200;font-size: 18px;">
+                            {{this.eventId}}
+                        </h6>
+                    </td>
+                    <td>
+                        <h6 class="form-control-plaintext" style="color: #f07200;font-size: 18px;">
+                            {{this.event}}
+                        </h6>
+                    </td>
+                    <td>
+                        <h6 class="form-control-plaintext" style="color: #f07200;font-size: 18px;">
+                            {{this.conductingDept}}
+                        </h6>
+                    </td>
+                    <td>
+                        <h6 class="form-control-plaintext" style="color: #f07200;font-size: 18px;">
+                            {{this.eventDay}}
+                        </h6>
+                    </td>
+                    <td>
+                        <h6 class="form-control-plaintext" style="color: #f07200;font-size: 18px;">
+                            <a target="blank" href={{this.eventLink}}>{{this.eventLink}}</a>
+                        </h6>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        {{^}}
+        <h2 class="unselectable display-3 text-center d-flex d-xl-flex justify-content-center justify-content-xl-center"
+            data-aos="fade-up" data-aos-duration="1000" style="color: rgb(240, 114, 0); margin-top: 0px">
+            You Haven't Registered For Any Events Yet !&nbsp; <br />
+        </h2>
+        {{/if}}
+    </div>
+</section>
