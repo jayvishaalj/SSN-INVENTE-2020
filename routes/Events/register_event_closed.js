@@ -59,19 +59,10 @@ router.get("/", function (req, res, next) {
                         logger.log("error", `User Profile  Error ${errSub1}`);
                         return res.redirect("/user/home");
                       } else {
-                        return res.render("profile", {
+                        return res.render("register_events_closed", {
                           messages,
-                          username: req.session.data.name,
-                          email: req.session.data.email,
-                          dept: req.session.data.dept,
-                          year: req.session.data.year,
-                          regno: req.session.data.regno,
-                          college: req.session.data.college,
                           isLogged: req.session.isLogged,
-                          paid: dataSub[0].paid,
-                          phone: dataSub[0].phone,
-                          workshopPaid: dataSub[0].workshopPaid,
-                          workshop: dataSub1[0],
+                          events: data,
                         });
                       }
                     }

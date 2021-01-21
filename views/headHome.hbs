@@ -68,66 +68,73 @@
         </div>
         <div class="row">
             {{#if users}}
-            <div class="col">
-                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
-                    Name
-                </h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            <h6 class="form-control-plaintext" style="color: #f07200;font-size: 20px;">
+                                Name
+                            </h6>
+                        </th>
+                        <th>
+                            <h6 class="form-control-plaintext" style="color: #f07200;font-size: 20px;">
+                                email
+                            </h6>
+                        </th>
+                        <th>
+                            <h6 class="form-control-plaintext" style="color: #f07200;font-size: 20px;">
+                                CollegeT&nbsp;
+                            </h6>
+                        </th>
+                        <th>
+                            <h6 class="form-control-plaintext" style="color: #f07200;font-size: 20px;">
+                                Year
+                            </h6>
+                        </th>
+                        <th>
+                            <h6 class="form-control-plaintext" style="color: #f07200;font-size: 20px;">
+                                Phone
+                            </h6>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each users}}
+                    <tr>
+                        <td>
+                            <h6 class="form-control-plaintext" style="color: #f07200;font-size: 18px;">
+                                {{this.name}}
+                            </h6>
+                        </td>
+                        <td>
+                            <h6 class="form-control-plaintext" style="color: #f07200;font-size: 18px;">
+                                {{this.email}}
+                            </h6>
+                        </td>
+                        <td>
+                            <h6 class="form-control-plaintext" style="color: #f07200;font-size: 18px;">
+                                {{this.college}}
+                            </h6>
+                        </td>
+                        <td>
+                            <h6 class="form-control-plaintext" style="color: #f07200;font-size: 18px;">
+                                {{this.year}}
+                            </h6>
+                        </td>
+                        <td>
+                            <h6 class="form-control-plaintext" style="color: #f07200;font-size: 18px;">
+                                {{this.phone}}
+                            </h6>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            {{^}}
+            <div class="col"><input class="form-control-plaintext" type="text"
+                    value="None have have Registered For your Event Yet !" readonly=""
+                    style="color: #f07200;font-size: 24px;">
             </div>
-            <div class="col">
-                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
-                    email
-                </h4>
-            </div>
-            <div class="col">
-                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
-                    College
-                </h4>
-            </div>
-            <div class="col">
-                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
-                    Year
-                </h4>
-            </div>
-            <div class="col">
-                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
-                    Phone
-                </h4>
-            </div>
+            {{/if}}
         </div>
-        {{#each users}}
-        <div class="row">
-            <div class="col">
-                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
-                    {{this.name}}
-                </h4>
-            </div>
-            <div class="col">
-                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
-                    {{this.email}}
-                </h4>
-            </div>
-            <div class="col">
-                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
-                    {{this.college}}
-                </h4>
-            </div>
-            <div class="col">
-                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
-                    {{this.year}}
-                </h4>
-            </div>
-            <div class="col">
-                <h4 class="form-control-plaintext" style="color: #f07200;font-size: 24px;">
-                    {{this.phone}}
-                </h4>
-            </div>
-        </div>
-        {{/each}}
-        {{^}}
-        <div class="col"><input class="form-control-plaintext" type="text"
-                value="None have have Registered For your Event Yet !" readonly=""
-                style="color: #f07200;font-size: 24px;">
-        </div>
-        {{/if}}
-    </div>
 </section>
