@@ -94,18 +94,6 @@
             <div class="col"><input class="form-control-plaintext" type="text" value="₹{{paid}}" readonly=""
                     style=" color: #f07200;font-size: 24px;"></div>
         </div>
-
-        {{!-- <div class="row">
-            <div class="col"><input class="form-control-plaintext" type="text" readonly=""
-                    style="color: #f07200;font-size: 24px;" value="Amount Paid for Workshop : "></div>
-            {{#if workshopPaid}}
-            <div class="col"><input class="form-control-plaintext" type="text" value="₹250" readonly=""
-                    style="color: #f07200;font-size: 24px;"></div>
-            {{^}}
-            <div class="col"><input class="form-control-plaintext" type="text" value="₹0" readonly=""
-                    style="color: #f07200;font-size: 24px;"></div>
-            {{/if}}
-        </div> --}}
         <div class="row">
             <div class="col"><input class="form-control-plaintext" type="text" readonly=""
                     style="color: #f07200;font-size: 24px;" value="Events Registered By you : "></div>
@@ -136,6 +124,11 @@
                             Event Day
                         </h6>
                     </th>
+                    <th>
+                        <h6 class="form-control-plaintext" style="color: #f07200;font-size: 20px;">
+                            Event Link
+                        </h6>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -161,6 +154,11 @@
                             {{this.eventDay}}
                         </h6>
                     </td>
+                    <td>
+                        <h6 class="form-control-plaintext" style="color: #f07200;font-size: 18px;">
+                            <a target="blank" href={{this.eventLink}}>{{this.eventLink}}</a>
+                        </h6>
+                    </td>
                 </tr>
                 {{/each}}
             </tbody>
@@ -171,17 +169,16 @@
         </div>
         {{/if}}
 
-        {{!-- <div class="row">
-            <div class="col">
-                {{#if workshop}}
-                <input class="form-control-plaintext" type="text"
-                    value="You Have Registered For {{workshop.name}} conducted by {{workshop.dept}}" readonly=""
-                    style="color: #f07200;font-size: 24px;">
-                {{^}}
-                <input class="form-control-plaintext" type="text" value="You Havn't Registered For any Workshop Yet!"
-                    readonly="" style="color: #f07200;font-size: 24px;">
-                {{/if}}
-            </div>
-        </div> --}}
+        <div class="col">
+            <input class="form-control-plaintext" type="text"
+                value="To confirm your registration for Workshops Please Contact the head of the workshops" readonly=""
+                style="color: #f07200;font-size: 24px;">
+            <input class="form-control-plaintext" type="text"
+                value="For Information about Workshop Registrations Please Contact the registration desk!" readonly=""
+                style="color: #f07200;font-size: 24px;">
+            <h6 class="form-control-plaintext" style="color: #f07200;font-size: 18px;">registration
+                desk:<br><strong>Shrimathy-&nbsp;</strong>9444857077<br><strong>Mugesh-&nbsp;</strong>9655092102&nbsp;
+            </h6>
+        </div>
     </div>
 </section>

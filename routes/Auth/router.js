@@ -6,7 +6,7 @@ var headUserAuth = require("./eventHeadAuth");
 var regUserAuth = require("./regDeskAuth");
 
 router.use("/reg", regUserAuth);
-router.use("/head", headUserAuth);
+// router.use("/head", headUserAuth);
 router.use("/super", superUserAuth);
 router.use("/", userAuth);
 

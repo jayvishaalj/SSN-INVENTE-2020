@@ -42,6 +42,18 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 
 hbs.registerPartials(path.join(__dirname, "views/partials"));
+hbs.registerHelper("checkTime", function (time, value) {
+  console.log("TIME DIF : ", new Date(time) - new Date() > 3600000);
+  if (new Date(time) - new Date() > 3600000) {
+    return (
+      '<form id="EventForm" action="/event/register" method="POST"><input type="hidden" name="eventId" value=' +
+      value +
+      ' hidden><input class="w3-btn w3-blue" type="submit" value="Register"></form>'
+    );
+  } else {
+    return '<input class="form-control-plaintext text-center" type="text" value="Sorry Reg Closed!" readonly="" style="color: #f07200;">';
+  }
+});
 
 app.use(logger("dev"));
 app.use(cookieParser());

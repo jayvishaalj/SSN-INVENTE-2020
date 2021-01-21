@@ -12,7 +12,7 @@ router.get("/", function (req, res, next) {
         "info",
         `User Entered Register Event Page ${req.session.data.name}`
       );
-      let sql = `SELECT events.id, events.name, events.type, events.dept, events.day from events`;
+      let sql = `SELECT events.id, events.name, events.type, events.dept, events.day ,events.time from events`;
       connection.query(sql, [], (err, data) => {
         if (err) {
           req.flash("error", "Oops something went wrong !");

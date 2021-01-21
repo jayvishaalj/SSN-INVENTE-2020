@@ -10,7 +10,7 @@ router.get("/", function (req, res, next) {
     if (req.session.data) {
       logger.log("info", `User Entered Profile Page ${req.session.data.name}`);
       console.log("USER EMAIL ", req.session.data);
-      let sql = `SELECT events.id as eventId, events.name as event, events.dept as conductingDept, events.day as eventDay, users.name, users.email as email, users.phone, users.paid FROM users JOIN attendees on users.id = attendees.userid JOIN events on events.id = attendees.eventid where users.email = ? `;
+      let sql = `SELECT events.id as eventId, events.name as event, events.dept as conductingDept, events.day as eventDay, events.link as eventLink, users.name, users.email as email, users.phone, users.paid FROM users JOIN attendees on users.id = attendees.userid JOIN events on events.id = attendees.eventid where users.email = ? `;
       connection.query(sql, req.session.data.email, async (err, data) => {
         if (err) {
           req.flash("error", "Oops something went wrong !");

@@ -132,10 +132,7 @@
             font-family: Alef, sans-serif;
             margin-top: 30px;
           ">
-                <form id="EventForm" action="/event/register" method="POST">
-                    <input type="hidden" name="eventId" value={{this.id}} hidden>
-                    <input class="w3-btn w3-blue" type="submit" value="Register">
-                </form>
+                {{{checkTime this.time this.id}}}
             </td>
         </tr>
         {{/each}}
@@ -151,6 +148,7 @@
 {{/if}}
 
 <br />
+
 <script>
     function myFunction(index) {
         var input, filter, table, tr, td, i, txtValue;
